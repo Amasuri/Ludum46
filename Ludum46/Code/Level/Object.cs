@@ -30,14 +30,12 @@ namespace Ludum46.Code.Level
             this.isSolid = isSolid;
             this.id = id;
 
-            //Debug
-            this.image = new Texture2D(game.GraphicsDevice, 12, 12);
+            this.image = game.Content.Load<Texture2D>(imgPath);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 unsCamera, Vector2 unsCoord)
         {
-            //Debug
-            refGame.screenPool.drawShape.Draw(spriteBatch, Color.Aquamarine, unsCoord - unsCamera, new Vector2(12, 12), Ludum46.Scale);
+            spriteBatch.Draw(this.image, (unsCoord - unsCamera) * Ludum46.Scale, null, Color.White, 0.0f, Vector2.Zero, Ludum46.Scale, SpriteEffects.None, 0.0f);
         }
 
         public Rectangle GetRect(Vector2 unsCoord)
