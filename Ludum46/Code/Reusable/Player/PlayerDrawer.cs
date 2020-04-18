@@ -42,20 +42,53 @@ namespace Ludum46.Code.Reusable
             playerFrame = new Vector2(24, 24);
             cameraRelative = new Vector2(Ludum46.UnscaledWidth - playerFrame.X, Ludum46.UnscaledHeight - playerFrame.Y) / 2;
 
+            //Animation things
             int frameMs = 150;
-            sheetLeft = new Animation(game, "res/entity/player/playerLeft", (int)playerFrame.X, frameMs);
-            sheetRight = new Animation(game, "res/entity/player/playerRight", (int)playerFrame.X, frameMs);
-            sheetUp = new Animation(game, "res/entity/player/playerUp", (int)playerFrame.X, frameMs);
-            sheetDown = new Animation(game, "res/entity/player/playerDown", (int)playerFrame.X, frameMs);
-            sheetUpLeft = new Animation(game, "res/entity/player/playerUpLeft", (int)playerFrame.X, frameMs);
-            sheetUpRight = new Animation(game, "res/entity/player/playerUpRight", (int)playerFrame.X, frameMs);
-            sheetDownLeft = new Animation(game, "res/entity/player/playerDownLeft", (int)playerFrame.X, frameMs);
-            sheetDownRight = new Animation(game, "res/entity/player/playerDownRight", (int)playerFrame.X, frameMs);
+            sheetLeft = new Animation(game, "res/entity/player/playerLeft", (int)playerFrame.X, msBetweenFrames: frameMs, imgScale: Ludum46.Scale);
+            sheetRight = new Animation(game, "res/entity/player/playerRight", (int)playerFrame.X, msBetweenFrames: frameMs, imgScale: Ludum46.Scale);
+            sheetUp = new Animation(game, "res/entity/player/playerUp", (int)playerFrame.X, msBetweenFrames: frameMs, imgScale: Ludum46.Scale);
+            sheetDown = new Animation(game, "res/entity/player/playerDown", (int)playerFrame.X, msBetweenFrames: frameMs, imgScale: Ludum46.Scale);
+            sheetUpLeft = new Animation(game, "res/entity/player/playerUpLeft", (int)playerFrame.X, msBetweenFrames: frameMs, imgScale: Ludum46.Scale);
+            sheetUpRight = new Animation(game, "res/entity/player/playerUpRight", (int)playerFrame.X, msBetweenFrames: frameMs, imgScale: Ludum46.Scale);
+            sheetDownLeft = new Animation(game, "res/entity/player/playerDownLeft", (int)playerFrame.X, msBetweenFrames: frameMs, imgScale: Ludum46.Scale);
+            sheetDownRight = new Animation(game, "res/entity/player/playerDownRight", (int)playerFrame.X, msBetweenFrames: frameMs, imgScale: Ludum46.Scale);
+            sheetLeft.EnableDrawing();
+            sheetRight.EnableDrawing();
+            sheetUp.EnableDrawing();
+            sheetDown.EnableDrawing();
+            sheetUpLeft.EnableDrawing();
+            sheetUpRight.EnableDrawing();
+            sheetDownLeft.EnableDrawing();
+            sheetDownRight.EnableDrawing();
         }
 
         public void Draw(SpriteBatch batch)
         {
-            refGame.screenPool.drawShape.Draw(batch, Color.MediumOrchid, PlayerDataManager.unscaledPixelPosition - unscaledCameraDrawOffset, playerFrame, Ludum46.Scale);
+            var pos = PlayerDataManager.unscaledPixelPosition - unscaledCameraDrawOffset;
+
+            //Stationary
+            if (PlayerDataManager.lastMove == Vector2.Zero)
+                refGame.screenPool.drawShape.Draw(batch, Color.MediumOrchid, pos, playerFrame, Ludum46.Scale);
+
+            //Basic directions
+            else if (PlayerDataManager.lastMove.X > 0 && PlayerDataManager.lastMove.Y == 0)
+                sheetRight.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+            else if (PlayerDataManager.lastMove.X < 0 && PlayerDataManager.lastMove.Y == 0)
+                sheetLeft.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+            else if (PlayerDataManager.lastMove.X == 0 && PlayerDataManager.lastMove.Y < 0)
+                sheetUp.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+            else if (PlayerDataManager.lastMove.X == 0 && PlayerDataManager.lastMove.Y > 0)
+                sheetDown.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+
+            //Diagonal
+            else if (PlayerDataManager.lastMove.X > 0 && PlayerDataManager.lastMove.Y < 0)
+                sheetUpRight.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+            else if (PlayerDataManager.lastMove.X < 0 && PlayerDataManager.lastMove.Y < 0)
+                sheetUpLeft.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+            else if (PlayerDataManager.lastMove.X > 0 && PlayerDataManager.lastMove.Y > 0)
+                sheetDownRight.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+            else if (PlayerDataManager.lastMove.X < 0 && PlayerDataManager.lastMove.Y > 0)
+                sheetDownLeft.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
         }
     }
 }

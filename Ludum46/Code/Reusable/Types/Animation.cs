@@ -15,7 +15,7 @@ namespace Ludum46.Code.Reusable
         protected int frameLimInPixels;
         protected int changeFrameMs;
         protected int currentFrameInd;
-        protected int currentTimeMs;
+        protected double currentTimeMs;
         protected int maxFrameInd;
         protected bool isDrawn;
         protected Point frameSize;
@@ -46,7 +46,7 @@ namespace Ludum46.Code.Reusable
         /// <summary>
         /// Draws current frame of animation, with offset from usual pos by offset.
         /// </summary>
-        public void Draw(SpriteBatch spritebatch, Vector2 offsetFromUsualDrawPos, SpriteEffects effects, int delta, bool doTick = true)
+        public void Draw(SpriteBatch spritebatch, Vector2 offsetFromUsualDrawPos, SpriteEffects effects, double delta, bool doTick = true)
         {
             if (!this.isDrawn)
                 return;
@@ -65,7 +65,7 @@ namespace Ludum46.Code.Reusable
         /// <summary>
         /// Draws current frame of animation at pos.
         /// </summary>
-        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, int delta, Vector2 pos, bool doTick = true)
+        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, double delta, Vector2 pos, bool doTick = true)
         {
             if (!this.isDrawn)
                 return;
@@ -84,7 +84,7 @@ namespace Ludum46.Code.Reusable
         /// <summary>
         /// Draws animation at default pos.
         /// </summary>
-        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, int delta, bool doTick = true)
+        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, double delta, bool doTick = true)
         {
             if (!this.isDrawn)
                 return;
@@ -105,7 +105,7 @@ namespace Ludum46.Code.Reusable
         /// Usually is called inside draw, but can be called separatedly for shared assets
         /// (to not Tick gajillion times for one obj and multiple draws)
         /// </summary>
-        public void Tick(int delta)
+        public void Tick(double delta)
         {
             this.currentTimeMs += delta;
 

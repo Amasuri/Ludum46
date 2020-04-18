@@ -25,14 +25,18 @@ namespace Ludum46.Code.Reusable
         {
             keyState = Keyboard.GetState();
 
+            var move = new Vector2(0, 0);
+
             if (keyState.IsKeyDown(keyUp))
-                PlayerDataManager.TryMove(new Vector2(0, -vertVelocity), game.level.currentRoom);
+                move = new Vector2(move.X, -vertVelocity);
             else if (keyState.IsKeyDown(keyDown))
-                PlayerDataManager.TryMove(new Vector2(0, +vertVelocity), game.level.currentRoom);
-            else if (keyState.IsKeyDown(keyLeft))
-                PlayerDataManager.TryMove(new Vector2(-horzVelocity, 0), game.level.currentRoom);
+                move = new Vector2(move.X, +vertVelocity);
+            if (keyState.IsKeyDown(keyLeft))
+                move = new Vector2(-horzVelocity, move.Y);
             else if (keyState.IsKeyDown(keyRight))
-                PlayerDataManager.TryMove(new Vector2(horzVelocity, 0), game.level.currentRoom);
+                move = new Vector2(+horzVelocity, move.Y);
+
+            PlayerDataManager.TryMove(move, game.level.currentRoom);
 
             oldKeyState = keyState;
         }

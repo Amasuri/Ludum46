@@ -9,6 +9,7 @@ namespace Ludum46.Code.Reusable
     public static class PlayerDataManager
     {
         static public Vector2 unscaledPixelPosition { get; private set; }
+        static public Vector2 lastMove { get; private set; }
 
         static PlayerDataManager()
         {
@@ -21,9 +22,13 @@ namespace Ludum46.Code.Reusable
         static internal void TryMove(Vector2 move, Room actionRoom)
         {
             if (actionRoom.PositionCollides(unscaledPixelPosition + move * 2))
+            {
+                move = Vector2.Zero;
                 return;
+            }
 
             unscaledPixelPosition += move;
+            lastMove = move;
         }
 
         /// <summary>
