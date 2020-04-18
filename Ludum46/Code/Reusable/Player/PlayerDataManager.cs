@@ -1,0 +1,37 @@
+﻿using Ludum46.Code.Level;
+using Microsoft.Xna.Framework;
+
+namespace Ludum46.Code.Reusable
+{
+    /// <summary>
+    /// Your standard data manager: saving, remembering what have been done, etc.
+    /// </summary>
+    public static class PlayerDataManager
+    {
+        static public Vector2 unscaledPixelPosition { get; private set; }
+
+        static PlayerDataManager()
+        {
+            unscaledPixelPosition = new Vector2(0, 0);
+        }
+
+        /// <summary>
+        /// Is internal because only PlayerController can do this.
+        /// </summary>
+        static internal void TryMove(Vector2 move, Room actionRoom)
+        {
+            if (actionRoom.PositionCollides(unscaledPixelPosition + move * 2))
+                return;
+
+            unscaledPixelPosition += move;
+        }
+
+        /// <summary>
+        /// Mode for the editor
+        /// </summary>
+        static public void MoveAsMouse(Vector2 move)
+        {
+            unscaledPixelPosition += move;
+        }
+    }
+}
