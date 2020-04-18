@@ -28,7 +28,7 @@ namespace Editor
             //Scrolling
             if(mouse.LeftButton == ButtonState.Pressed)
             {
-                PlayerDataManager.MoveAsMouse((oldMouse.Position - mouse.Position).ToVector2() / Ludum46.Code.Ludum46.Scale);
+                PlayerDataManager.MoveAsMouse(((oldMouse.Position - mouse.Position).ToVector2() / Ludum46.Code.Ludum46.Scale).ToPoint().ToVector2());
             }
 
             //Selecting tile
