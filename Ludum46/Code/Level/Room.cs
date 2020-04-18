@@ -12,21 +12,24 @@ namespace Ludum46.Code.Level
 {
     public class Room
     {
-        private Dictionary<Vector2, Object> objects;
+        private Dictionary<Vector2, List<Object>> objects;
         private List<Entity> entities;
 
         private string dataFile;
 
         public Room(Ludum46 game, int id)
         {
-            this.objects = new Dictionary<Vector2, Object>();
+            this.objects = new Dictionary<Vector2, List<Object>>();
 
             dataFile = "LevelData/room" + id.ToString() + ".ptdata";
 
             foreach (var line in File.ReadAllLines(dataFile))
             {
                 var splitLine = line.Split(new string[] { " ", "." }, StringSplitOptions.RemoveEmptyEntries);
-                this.objects.Add(new Vector2(Convert.ToInt32(splitLine[0]), Convert.ToInt32(splitLine[1])), game.pool.pool[Convert.ToInt32(splitLine[2])]);
+                var currentObject = game.pool.pool[Convert.ToInt32(splitLine[2])];
+                var currentPosition = new Vector2(Convert.ToInt32(splitLine[0]), Convert.ToInt32(splitLine[1]));
+
+                EditorAddObjectAt(currentPosition, currentObject);
             }
 
             this.entities = new List<Entity>
@@ -39,33 +42,46 @@ namespace Ludum46.Code.Level
         {
             var futurePlayerRect = new Rectangle(pos.ToPoint(), PlayerDrawer.Rect.Size);
 
-            foreach (var obj in objects)
+            foreach (var objList in objects)
             {
-                if (!obj.Value.isSolid)
-                    continue;
+                foreach (var obj in objList.Value)
+                {
+                    if (!obj.isSolid)
+                        continue;
 
-                //Checking whether each obj is inside screen doesn't make sense because it's essentially
-                //The same operation as checking whether the obj is inside the player, so we check for that instead
-                if (obj.Value.GetRect(obj.Key).Intersects(futurePlayerRect))
-                    return true;
+                    //Checking whether each obj is inside screen doesn't make sense because it's essentially
+                    //The same operation as checking whether the obj is inside the player, so we check for that instead
+                    if (obj.GetRect(objList.Key).Intersects(futurePlayerRect))
+                        return true;
+                }
             }
 
             return false;
         }
 
-        public void EditorAddObjectAt(Vector2 vector2, Object @object)
+        public void EditorAddObjectAt(Vector2 currentPosition, Object @object)
         {
-            this.objects.Add(vector2, @object);
+            if (!this.objects.ContainsKey(currentPosition))
+            {
+                this.objects.Add(currentPosition, new List<Object>() { @object });
+            }
+            else
+            {
+                this.objects[currentPosition].Add(@object);
+            }
         }
 
         public void EditorSaveRoomData()
         {
             var file = "";
 
-            foreach (var item in this.objects)
+            foreach (var objList in this.objects)
             {
-                var resStr = String.Format("{0}.{1} {2}\n", (int)item.Key.X, (int)item.Key.Y, item.Value.id );
-                file += resStr;
+                foreach (var obj in objList.Value)
+                {
+                    var resStr = String.Format("{0}.{1} {2}\n", (int)objList.Key.X, (int)objList.Key.Y, obj.id);
+                    file += resStr;
+                }
             }
 
             File.WriteAllText(dataFile, file);
@@ -74,9 +90,12 @@ namespace Ludum46.Code.Level
         public void Draw(SpriteBatch batch)
         {
             //Statinary objects that are kinda
-            foreach (var obj in objects)
+            foreach (var objList in objects)
             {
-                obj.Value.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset, obj.Key);
+                foreach (var obj in objList.Value)
+                {
+                    obj.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset, objList.Key);
+                }
             }
 
             foreach (var entiity in entities)
