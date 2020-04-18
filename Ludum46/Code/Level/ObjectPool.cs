@@ -17,6 +17,7 @@ namespace Ludum46.Code.Level
         {
             pool = new List<Object>
             {
+                //Walls
                 new Object(game, "res/obj/walls/wall0", Object.DrawLevel.Wall, id: 0),
                 new Object(game, "res/obj/walls/wall1", Object.DrawLevel.Wall, id: 1),
                 new Object(game, "res/obj/walls/wall2", Object.DrawLevel.Wall, id: 2),
@@ -30,6 +31,12 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/walls/wall10", Object.DrawLevel.Wall, id: 10),
                 new Object(game, "res/obj/walls/wall11", Object.DrawLevel.Wall, id: 11),
                 new Object(game, "res/obj/walls/wall12", Object.DrawLevel.Wall, id: 12),
+
+                //Arches, etc
+                new Object(game, "res/obj/walls/arch_left", Object.DrawLevel.Wall, id: 13),
+                new Object(game, "res/obj/walls/arch_right", Object.DrawLevel.Wall, id: 14),
+                new Object(game, "res/obj/walls/arch_top", Object.DrawLevel.Wall, id: 15),
+                new Object(game, "res/obj/walls/entrance", Object.DrawLevel.Wall, id: 16),
             };
         }
     }

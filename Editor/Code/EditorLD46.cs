@@ -32,9 +32,9 @@ namespace Editor
             }
 
             //Selecting tile
-            if(mouse.HorizontalScrollWheelValue > oldMouse.HorizontalScrollWheelValue)
+            if(mouse.ScrollWheelValue > oldMouse.ScrollWheelValue)
                 currentItem--;
-            if (mouse.HorizontalScrollWheelValue < oldMouse.HorizontalScrollWheelValue)
+            if (mouse.ScrollWheelValue < oldMouse.ScrollWheelValue)
                 currentItem++;
 
             //Fixing bad selection
