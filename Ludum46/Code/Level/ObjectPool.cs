@@ -33,10 +33,18 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/walls/wall12", Object.DrawLevel.Wall, id: 12),
 
                 //Arches, etc
-                new Object(game, "res/obj/walls/arch_left", Object.DrawLevel.Wall, id: 13),
-                new Object(game, "res/obj/walls/arch_right", Object.DrawLevel.Wall, id: 14),
-                new Object(game, "res/obj/walls/arch_top", Object.DrawLevel.Wall, id: 15),
-                new Object(game, "res/obj/walls/entrance", Object.DrawLevel.Wall, id: 16),
+                new Object(game, "res/obj/walls/arch_left", Object.DrawLevel.AbovePlayer, id: 13),
+                new Object(game, "res/obj/walls/arch_right", Object.DrawLevel.AbovePlayer, id: 14),
+                new Object(game, "res/obj/walls/arch_top", Object.DrawLevel.AbovePlayer, id: 15),
+                new Object(game, "res/obj/walls/entrance", Object.DrawLevel.AbovePlayer, id: 16),
+
+                //Treeroom objects
+                new Object(game, "res/obj/tree_bottom", Object.DrawLevel.Wall, id: 17),
+                new Object(game, "res/obj/tree_place", Object.DrawLevel.Wall, id: 18),
+                new Object(game, "res/obj/tree_top", Object.DrawLevel.Wall, id: 19),
+                new Object(game, "res/obj/water_canal", Object.DrawLevel.Wall, id: 20),
+                new Object(game, "res/obj/water_grid", Object.DrawLevel.Wall, id: 21),
+                new Object(game, "res/obj/waterfall", Object.DrawLevel.Wall, id: 22),
             };
         }
     }
