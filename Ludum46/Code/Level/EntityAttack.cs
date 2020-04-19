@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,12 @@ namespace Ludum46.Code.Level
         public bool readyToDie => timeToLiveMs < 0;
 
         public EntityAttack(Ludum46 game, string imgPath, Vector2 coord, float timeToLiveMs, TargetedTo targetedTo, List<Rectangle> rectList)
-            : base(game, imgPath, coord)
+            : base(game, imgPath, coord, initRectAsImage: false)
         {
             this.timeToLiveMs = timeToLiveMs;
             this.targetedTo = targetedTo;
+
+            this.rectList = rectList;
         }
 
         protected override void UpdateCustom(Ludum46 game)

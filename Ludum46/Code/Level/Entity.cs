@@ -10,24 +10,33 @@ namespace Ludum46.Code.Level
 {
     public class Entity
     {
+        protected List<Rectangle> rectList;
         protected Texture2D image;
         protected Vector2 unsCoord;
 
         protected Ludum46 refGame;
 
-        public Entity(Ludum46 game, string imgPath, Vector2 coord)
+        public Entity(Ludum46 game, string imgPath, Vector2 coord, bool initRectAsImage = true)
         {
             this.refGame = game;
             this.unsCoord = coord;
 
+            this.rectList = new List<Rectangle>();
+
             //Debug
             this.image = new Texture2D(game.GraphicsDevice, 12, 12);
+
+            if (initRectAsImage)
+                this.rectList.Add(new Rectangle(unsCoord.ToPoint(), image.Bounds.Size));
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 unsCamera)
+        virtual public void Draw(SpriteBatch spriteBatch, Vector2 unsCamera)
         {
             //Debug
-            refGame.screenPool.drawShape.Draw(spriteBatch, Color.Black, this.unsCoord - unsCamera, new Vector2(12, 12), Ludum46.Scale);
+            foreach (var rect in this.rectList)
+            {
+                refGame.screenPool.drawShape.Draw(spriteBatch, Color.Black, rect.Location.ToVector2() - unsCamera, rect.Size.ToVector2(), Ludum46.Scale);
+            }
         }
 
         public void Update(Ludum46 game)
@@ -47,9 +56,9 @@ namespace Ludum46.Code.Level
             //Some custom things like spawn projectiles etc maybe? idk
         }
 
-        public Rectangle GetRect()
+        public List<Rectangle> GetRect()
         {
-            return new Rectangle(unsCoord.ToPoint(), image.Bounds.Size);
+            return rectList;
         }
     }
 }
