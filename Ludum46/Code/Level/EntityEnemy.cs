@@ -59,6 +59,7 @@ namespace Ludum46.Code.Level
         protected Direction currentAnimDirection { get; private set; }
         protected AttackEffectPool.Type currentAnimType { get; private set; }
         protected AttackEffectPool.Type attackType;
+        protected Vector2 animSwipeUnscOffest = new Vector2(-4, -4);
 
         public EntityEnemy(Ludum46 game, string folderName, Vector2 coord, Rectangle enemyRectRelativeToImg, int hitPoints = 10)
             : base(game, "aaaa", coord, initRectAsImage: false, hitPoints)
@@ -106,7 +107,7 @@ namespace Ludum46.Code.Level
             {
                 AttackEffectPool.DrawAttackAt(
                     batch, currentAnimTime, currentAnimDirection,
-                    currentAnimType, pos * Ludum46.Scale
+                    currentAnimType, (pos + animSwipeUnscOffest) * Ludum46.Scale
                 );
             }
         }

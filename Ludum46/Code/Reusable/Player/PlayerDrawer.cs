@@ -33,6 +33,8 @@ namespace Ludum46.Code.Reusable
         /// </summary>
         public static Vector2 playerFrame { get; private set; }
 
+        private Vector2 animSwipeUnscOffest = new Vector2(-4, -4);
+
         private Ludum46 refGame;
 
         private Texture2D playerStill;
@@ -91,7 +93,7 @@ namespace Ludum46.Code.Reusable
             {
                 AttackEffectPool.DrawAttackAt(
                     batch, PlayerController.currentAnimTime, PlayerController.currentAnimDirection,
-                    PlayerController.currentAnimType, pos * Ludum46.Scale
+                    PlayerController.currentAnimType, (pos + animSwipeUnscOffest ) * Ludum46.Scale
                 );
             }
         }
