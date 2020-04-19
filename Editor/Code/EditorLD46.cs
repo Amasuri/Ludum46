@@ -61,11 +61,11 @@ namespace Editor
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Red);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            // TODO: Add your drawing code here
             this.level.Draw(spriteBatch, this);
+            this.level.DrawFront(spriteBatch, this);
 
             //Draw object at hand
             this.pool.pool[currentItem].Draw(spriteBatch, new Vector2(0, 0), (this.mouse.Position.ToVector2() / Scale).ToPoint().ToVector2());
