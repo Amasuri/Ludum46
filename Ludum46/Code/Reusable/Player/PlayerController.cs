@@ -25,6 +25,8 @@ namespace Ludum46.Code.Reusable
 
         private const float horzVelocity = 1f;
         private const float vertVelocity = horzVelocity / 3 * 2;
+        private const int attackDelayMs = 200;
+        private static double blockAttackForMs = 0;
 
         //Needed to know how to place slashes
         private static Vector2 lastNonNullMove = new Vector2(0, +vertVelocity);
@@ -45,8 +47,15 @@ namespace Ludum46.Code.Reusable
         {
             keyState = Keyboard.GetState();
 
-            UpdateMovement(game);
-            UpdateAttack(game);
+            if (blockAttackForMs <= 0)
+            {
+                UpdateMovement(game);
+                UpdateAttack(game);
+            }
+            else
+            {
+                blockAttackForMs -= Ludum46.DeltaUpdate;
+            }
 
             oldKeyState = keyState;
         }
@@ -57,7 +66,9 @@ namespace Ludum46.Code.Reusable
             {
                 game.level.SpawnAttackEntity(
                     game, new List<Rectangle>() { upRectangle, downRectangle, leftRectangle, rightRectangle },
-                    TargetedTo.Enemy, PlayerDataManager.unscaledPixelPosition, 200);
+                    TargetedTo.Enemy, PlayerDataManager.unscaledPixelPosition, attackDelayMs);
+
+                blockAttackForMs = attackDelayMs;
             }
             else if (oneKeyPress(keyWhack))
             {
