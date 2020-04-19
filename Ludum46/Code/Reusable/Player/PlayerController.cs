@@ -93,8 +93,8 @@ namespace Ludum46.Code.Reusable
 
                 //Attack timers for animation
                 currentAnimTime = 0d;
-                currentAnimDirection = Direction.Down;
-                currentAnimType = Type.Attack1;
+                currentAnimDirection = game.screenPool.playerDrawer.GetCurrentDirection();
+                currentAnimType = PlayerDataManager.GetNextAttackType();
             }
             else if (oneKeyPress(keyWhack))
             {

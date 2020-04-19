@@ -94,6 +94,26 @@ namespace Ludum46.Code.Reusable
             }
         }
 
+        public AttackEffectPool.Direction GetCurrentDirection()
+        {
+            if (lastAnimation == sheetLeft)
+                return AttackEffectPool.Direction.Left;
+            else if (lastAnimation == sheetRight)
+                return AttackEffectPool.Direction.Right;
+            else if (lastAnimation == sheetUp)
+                return AttackEffectPool.Direction.Up;
+            else if (lastAnimation == sheetDown)
+                return AttackEffectPool.Direction.Down;
+            else if (lastAnimation == sheetUpLeft)
+                return AttackEffectPool.Direction.Upleft;
+            else if (lastAnimation == sheetUpRight)
+                return AttackEffectPool.Direction.UpRight;
+            else if (lastAnimation == sheetDownLeft)
+                return AttackEffectPool.Direction.DownLeft;
+            else
+                return AttackEffectPool.Direction.DownRight;
+        }
+
         private void DrawPlayerMovementAnimations(SpriteBatch batch, Vector2 pos)
         {
             //Stationary

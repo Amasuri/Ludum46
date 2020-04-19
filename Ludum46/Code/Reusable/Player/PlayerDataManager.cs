@@ -1,5 +1,6 @@
 ﻿using Ludum46.Code.Level;
 using Microsoft.Xna.Framework;
+using static Ludum46.Code.Graphics.AttackEffectPool;
 
 namespace Ludum46.Code.Reusable
 {
@@ -17,10 +18,13 @@ namespace Ludum46.Code.Reusable
 
         static public int hp { get; private set; }
 
+        static private Type attackType;
+
         static PlayerDataManager()
         {
             unscaledPixelPosition = new Vector2(-10, 0);
             hp = MAX_HP;
+            attackType = Type.Attack1;
         }
 
         /// <summary>
@@ -54,6 +58,15 @@ namespace Ludum46.Code.Reusable
         static public void Heal()
         {
             hp = MAX_HP;
+        }
+
+        static public Type GetNextAttackType()
+        {
+            attackType++;
+            if (attackType > Type.Attack3)
+                attackType = Type.Attack1;
+
+            return attackType;
         }
     }
 }

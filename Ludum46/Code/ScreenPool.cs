@@ -24,7 +24,7 @@ namespace Ludum46.Code
         private KeyboardState _oldKey;
 
         public Pixel drawShape;
-        private PlayerDrawer playerDrawer;
+        public PlayerDrawer playerDrawer { get; private set; }
 
         private Color bgColor = new Color(121,103,85);
 
