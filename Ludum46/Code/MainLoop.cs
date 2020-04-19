@@ -68,7 +68,7 @@ namespace Ludum46.Code
 
             if (this.screenPool.screenState == ScreenPool.ScreenState.Playing)
             {
-                PlayerController.UpdateMovement(this);
+                PlayerController.UpdateControls(this);
             }
 
             base.Update(gameTime);

@@ -15,16 +15,38 @@ namespace Ludum46.Code.Reusable
         private const Keys keyLeft = Keys.A;
         private const Keys keyRight = Keys.D;
 
+        private const Keys keySlash = Keys.Space;
+        private const Keys keyWhack = Keys.LeftShift;
+
         private static KeyboardState keyState;
         private static KeyboardState oldKeyState;
 
         private const float horzVelocity = 1f;
         private const float vertVelocity = horzVelocity / 2;
 
-        static public void UpdateMovement(Ludum46 game)
+        //Needed to know how to place slashes
+        private static Vector2 lastNonNullMove = new Vector2(0, +vertVelocity);
+
+        static public void UpdateControls(Ludum46 game)
         {
             keyState = Keyboard.GetState();
 
+            UpdateMovement(game);
+            UpdateAttack();
+
+            oldKeyState = keyState;
+        }
+
+        private static void UpdateAttack()
+        {
+            if (oneKeyPress(keySlash))
+                ;// game.level.SpawnAttackEntity();
+            else if (oneKeyPress(keyWhack))
+                ;
+        }
+
+        private static void UpdateMovement(Ludum46 game)
+        {
             var move = new Vector2(0, 0);
 
             if (keyState.IsKeyDown(keyUp))
@@ -37,8 +59,6 @@ namespace Ludum46.Code.Reusable
                 move = new Vector2(+horzVelocity, move.Y);
 
             PlayerDataManager.TryMove(move, game.level.currentRoom);
-
-            oldKeyState = keyState;
         }
 
         static private bool oneKeyPress(Keys key)
