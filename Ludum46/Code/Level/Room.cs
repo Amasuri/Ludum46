@@ -139,6 +139,35 @@ namespace Ludum46.Code.Level
             {
                 entiity.Update(ludum46);
             }
+
+            //Ded attacks
+            var dedEntities = new List<Entity>();
+            foreach (var item in this.entities)
+            {
+                if (!(item is EntityAttack))
+                    continue;
+
+                var attack = (EntityAttack)item;
+
+                if (attack.readyToDie)
+                    dedEntities.Add(item);
+            }
+
+            //Ded undead
+            foreach (var item in this.entities)
+            {
+                if (item is EntityAttack)
+                    continue;
+
+                if (item.IsDead)
+                    dedEntities.Add(item);
+            }
+
+            //Delete ded
+            foreach (var dedItem in dedEntities)
+            {
+                this.entities.Remove(dedItem);
+            }
         }
 
         public void SpawnAttackEntity(Ludum46 game, List<Rectangle> rectList, EntityAttack.TargetedTo target, Vector2 unscPos, int timeToLive)

@@ -10,18 +10,22 @@ namespace Ludum46.Code.Level
 {
     public class Entity
     {
+        public bool IsDead => hitPoints < 0;
+        private int hitPoints;
+
         protected List<Rectangle> rectList;
         protected Texture2D image;
         protected Vector2 unsCoord;
 
         protected Ludum46 refGame;
 
-        public Entity(Ludum46 game, string imgPath, Vector2 coord, bool initRectAsImage = true)
+        public Entity(Ludum46 game, string imgPath, Vector2 coord, bool initRectAsImage = true, int hitPoints = 10)
         {
             this.refGame = game;
             this.unsCoord = coord;
 
             this.rectList = new List<Rectangle>();
+            this.hitPoints = hitPoints;
 
             //Debug
             this.image = new Texture2D(game.GraphicsDevice, 12, 12);
