@@ -20,9 +20,12 @@ namespace Ludum46.Code.Level
         private const float HOR_MOVE = 0.3f;
         private const float VER_MOVE = HOR_MOVE / 3 * 2;
         private const int DIFF_THRESHOLD = 5;
-        private const int ATT_DELAY = 200;
+        private const int ATT_COOLDOWN = 200;
+        private const int ATT_DELAY = 500;
+        private const int ATT_RANGE = 10;
 
-        private double blockAttackForMs = 0;
+        private double blockAfterAttackForMs = 0;
+        private double blockBeforeAttackForMs = ATT_DELAY;
 
         //Visual
         private Animation sheetLeft;
@@ -137,7 +140,7 @@ namespace Ludum46.Code.Level
         {
             var move = Vector2.Zero;
 
-            if (blockAttackForMs >= 0f)
+            if (blockAfterAttackForMs >= 0f)
                 return;
 
             if (Math.Abs(PlayerDataManager.unscaledFrameCenterPoint.Length() - this.unscaledFrameCenterPoint.Length()) < SIGHT_RANGE)
@@ -179,11 +182,30 @@ namespace Ludum46.Code.Level
 
         protected override void UpdateCustom(Ludum46 game)
         {
-            if(blockAttackForMs >= 0f)
+            //If attack cooldown is still in the effect
+            if(blockAfterAttackForMs >= 0f)
             {
-                blockAttackForMs -= Ludum46.DeltaUpdate;
+                blockAfterAttackForMs -= Ludum46.DeltaUpdate;
                 return;
             }
+
+            //If not at range
+            var posDiff = (PlayerDataManager.unscaledFrameCenterPoint - this.unscaledFrameCenterPoint).Length();
+            if(posDiff > ATT_RANGE)
+            {
+                blockBeforeAttackForMs = ATT_DELAY;
+                return;
+            }
+
+            //If not ready to attack yet
+            blockBeforeAttackForMs -= Ludum46.DeltaUpdate;
+            if(blockBeforeAttackForMs > 0f)
+            {
+                return;
+            }
+
+            //Replenish the delay before the next attack
+            blockBeforeAttackForMs = ATT_DELAY;
 
             var attackRectList = new List<Rectangle> { };
 
@@ -198,9 +220,9 @@ namespace Ludum46.Code.Level
 
             game.level.SpawnAttackEntity(
                 game, attackRectList,
-                TargetedTo.Player, PlayerDataManager.unscaledPixelPosition, ATT_DELAY);
+                TargetedTo.Player, PlayerDataManager.unscaledPixelPosition, ATT_COOLDOWN);
 
-            blockAttackForMs = ATT_DELAY;
+            blockAfterAttackForMs = ATT_COOLDOWN;
         }
     }
 }
