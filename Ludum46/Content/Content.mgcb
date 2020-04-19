@@ -205,6 +205,18 @@
 /processorParam:TextureFormat=Color
 /build:../res/entity/skeleton/UpRight.png;res/entity/skeleton/UpRight.png
 
+#begin ../res/music/dynamic/deadbeat.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/music/dynamic/deadbeat.ogg;res/music/dynamic/deadbeat.ogg
+
+#begin ../res/music/dynamic/forager.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/music/dynamic/forager.ogg;res/music/dynamic/forager.ogg
+
 #begin ../res/obj/tree_bottom.png
 /importer:TextureImporter
 /processor:TextureProcessor

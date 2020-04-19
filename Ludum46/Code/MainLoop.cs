@@ -25,6 +25,8 @@ namespace Ludum46.Code
         public ObjectPool pool;
         public Level.Level level;
 
+        public MusicPlayer music;
+
         public Ludum46()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -54,6 +56,8 @@ namespace Ludum46.Code
             level = new Level.Level(this);
 
             screenPool = new ScreenPool(this);
+
+            music = new MusicPlayer(this);
         }
 
         protected override void UnloadContent()
@@ -70,6 +74,8 @@ namespace Ludum46.Code
             {
                 PlayerController.UpdateControls(this);
             }
+
+            this.music.Update(this);
 
             base.Update(gameTime);
         }
