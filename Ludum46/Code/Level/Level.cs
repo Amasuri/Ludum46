@@ -22,6 +22,11 @@ namespace Ludum46.Code.Level
             currentRoom.Draw(batch);
         }
 
+        public void DrawFront(SpriteBatch batch, Ludum46 game)
+        {
+            currentRoom.DrawFront(batch);
+        }
+
         public void Update(Ludum46 ludum46)
         {
             currentRoom.Update(ludum46);

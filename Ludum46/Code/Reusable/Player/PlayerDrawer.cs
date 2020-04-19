@@ -19,6 +19,9 @@ namespace Ludum46.Code.Reusable
 
         public static Vector2 unscaledCameraDrawOffset => (PlayerDataManager.unscaledPixelPosition) - cameraRelative;
 
+        static public Rectangle UnscaledCameraRect =>
+            new Rectangle((int)unscaledCameraDrawOffset.X, (int)unscaledCameraDrawOffset.Y, Ludum46.UnscaledWidth, Ludum46.UnscaledHeight);
+
         /// <summary>
         /// Doesn't refer to actual position, but to a rect relative to the frame
         /// </summary>

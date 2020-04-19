@@ -51,6 +51,7 @@ namespace Ludum46.Code
             {
                 game.level.Draw(defaultSpriteBatch, game);
                 playerDrawer.Draw(defaultSpriteBatch);
+                game.level.DrawFront(defaultSpriteBatch, game);
             }
             else if (screenState == ScreenState.EndGame)
             {

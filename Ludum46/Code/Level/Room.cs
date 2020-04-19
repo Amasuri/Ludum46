@@ -94,6 +94,14 @@ namespace Ludum46.Code.Level
             {
                 foreach (var obj in objList.Value)
                 {
+                    //Object not on screen
+                    if (!obj.GetRect(objList.Key).Intersects(PlayerDrawer.UnscaledCameraRect))
+                        continue;
+
+                    //Object not on layer
+                    if (obj.drawLevel == Object.DrawLevel.AbovePlayer)
+                        continue;
+
                     obj.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset, objList.Key);
                 }
             }
@@ -101,6 +109,26 @@ namespace Ludum46.Code.Level
             foreach (var entiity in entities)
             {
                 entiity.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset);
+            }
+        }
+
+        public void DrawFront(SpriteBatch batch)
+        {
+            //Upper level stationary objects
+            foreach (var objList in objects)
+            {
+                foreach (var obj in objList.Value)
+                {
+                    //Object not on screen
+                    if (!obj.GetRect(objList.Key).Intersects(PlayerDrawer.UnscaledCameraRect))
+                        continue;
+
+                    //Object not on layer
+                    if (obj.drawLevel != Object.DrawLevel.AbovePlayer)
+                        continue;
+
+                    obj.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset, objList.Key);
+                }
             }
         }
 
