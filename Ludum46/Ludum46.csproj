@@ -42,9 +42,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Code\Level\Enemy.cs" />
     <Compile Include="Code\Level\Entity.cs" />
     <Compile Include="Code\Level\EntityAttack.cs" />
+    <Compile Include="Code\Level\EntityEnemy.cs" />
     <Compile Include="Code\Level\Level.cs" />
     <Compile Include="Code\Level\Object.cs" />
     <Compile Include="Code\Level\ObjectPool.cs" />

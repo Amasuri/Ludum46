@@ -21,8 +21,8 @@ namespace Ludum46.Code.Level
         {
             this.objects = new Dictionary<Vector2, List<Object>>();
 
+            //Load tile data from proper room file
             dataFile = "LevelData/room" + id.ToString() + ".ptdata";
-
             foreach (var line in File.ReadAllLines(dataFile))
             {
                 var splitLine = line.Split(new string[] { " ", "." }, StringSplitOptions.RemoveEmptyEntries);
@@ -32,9 +32,10 @@ namespace Ludum46.Code.Level
                 EditorAddObjectAt(currentPosition, currentObject);
             }
 
+            //Debug spawn random enemies
             this.entities = new List<Entity>
             {
-                new Entity(game, "aaa", new Vector2(90, 9)),
+                new EntityEnemy(game, "skeleton", new Vector2(130, 29), new Rectangle(0, 0, 24, 24)),
             };
         }
 
