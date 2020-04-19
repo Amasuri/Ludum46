@@ -22,7 +22,7 @@ namespace Ludum46.Code.Reusable
         private static KeyboardState oldKeyState;
 
         private const float horzVelocity = 1f;
-        private const float vertVelocity = horzVelocity / 2;
+        private const float vertVelocity = horzVelocity / 3 * 2;
 
         //Needed to know how to place slashes
         private static Vector2 lastNonNullMove = new Vector2(0, +vertVelocity);
@@ -57,6 +57,9 @@ namespace Ludum46.Code.Reusable
                 move = new Vector2(-horzVelocity, move.Y);
             else if (keyState.IsKeyDown(keyRight))
                 move = new Vector2(+horzVelocity, move.Y);
+
+            if (move.X != 0 && move.Y != 0)
+                move.Normalize();
 
             PlayerDataManager.TryMove(move, game.level.currentRoom);
         }
