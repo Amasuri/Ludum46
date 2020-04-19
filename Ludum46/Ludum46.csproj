@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Code\Graphics\AttackEffectPool.cs" />
     <Compile Include="Code\Level\Entity.cs" />
     <Compile Include="Code\Level\EntityAttack.cs" />
     <Compile Include="Code\Level\EntityEnemy.cs" />

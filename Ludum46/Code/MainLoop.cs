@@ -1,4 +1,5 @@
-﻿using Ludum46.Code.Level;
+﻿using Ludum46.Code.Graphics;
+using Ludum46.Code.Level;
 using Ludum46.Code.Reusable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -58,6 +59,7 @@ namespace Ludum46.Code
             screenPool = new ScreenPool(this);
 
             music = new MusicPlayer(this);
+            AttackEffectPool.LoadAssets(this);
         }
 
         protected override void UnloadContent()
