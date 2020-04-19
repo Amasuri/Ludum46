@@ -60,9 +60,14 @@ namespace Ludum46.Code.Level
             //Some custom things like spawn projectiles etc maybe? idk
         }
 
-        public List<Rectangle> GetRect()
+        public List<Rectangle> GetRectList()
         {
             return rectList;
+        }
+
+        public void Hit()
+        {
+            this.hitPoints--;
         }
     }
 }

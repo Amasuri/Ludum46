@@ -140,6 +140,35 @@ namespace Ludum46.Code.Level
                 entiity.Update(ludum46);
             }
 
+            //Enemy hitboxing
+            foreach (var item in this.entities.Where(x => x is EntityAttack))
+            {
+                var attack = (EntityAttack)item;
+
+                //Don't use if...
+                if (attack.Used)
+                    continue;
+                if (attack.targetedTo == EntityAttack.TargetedTo.Player)
+                    continue;
+
+                //Compare every attack rect against every enemy
+                foreach (var enemy in this.entities.Where(x => !(x is EntityAttack)))
+                {
+                    foreach (var attackRect in attack.GetRectList())
+                    {
+                        if(attackRect.Intersects(enemy.GetRectList()[0]))
+                        {
+                            enemy.Hit();
+                            attack.MarkAsSoonToBeUsed();
+                        }
+                    }
+                }
+
+                //Attack is no longer active if it hit something
+                if (attack.SoonToBeUsed)
+                    attack.MarkAsUsed();
+            }
+
             //Ded attacks
             var dedEntities = new List<Entity>();
             foreach (var item in this.entities)
