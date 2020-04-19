@@ -39,7 +39,7 @@ namespace Ludum46.Code.Level
             };
         }
 
-        public bool PositionCollides(Vector2 pos)
+        public bool PlayerPositionCollides(Vector2 pos)
         {
             var futurePlayerRect = new Rectangle(pos.ToPoint() + PlayerDrawer.RectInsideFrame.Location, PlayerDrawer.RectInsideFrame.Size);
 
@@ -53,6 +53,25 @@ namespace Ludum46.Code.Level
                     //Checking whether each obj is inside screen doesn't make sense because it's essentially
                     //The same operation as checking whether the obj is inside the player, so we check for that instead
                     if (obj.GetRect(objList.Key).Intersects(futurePlayerRect))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool EntityPositionCollides(Rectangle entityRectFutur)
+        {
+            foreach (var objList in objects)
+            {
+                foreach (var obj in objList.Value)
+                {
+                    if (!obj.isSolid)
+                        continue;
+
+                    //Checking whether each obj is inside screen doesn't make sense because it's essentially
+                    //The same operation as checking whether the obj is inside the player, so we check for that instead
+                    if (obj.GetRect(objList.Key).Intersects(entityRectFutur))
                         return true;
                 }
             }

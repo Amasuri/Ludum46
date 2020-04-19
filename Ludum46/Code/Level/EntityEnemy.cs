@@ -139,6 +139,17 @@ namespace Ludum46.Code.Level
                     move = new Vector2(move.X, -VER_MOVE);
             }
 
+            //Doesn't make sense to do updates in case there's nothing to update
+            //if (move.X == 0 && move.Y == 0)
+            //    return;
+
+            //Check legitness (collisions)
+            var rectFutur = new Rectangle(this.unsCoord.ToPoint() + (move * 5).ToPoint(), this.relativeRect.Size);
+            if (game.level.currentRoom.EntityPositionCollides(rectFutur))
+            {
+                move = Vector2.Zero;
+            }
+
             this.unsCoord += move;
             this.lastMove = move;
 

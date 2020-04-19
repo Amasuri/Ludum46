@@ -22,7 +22,7 @@ namespace Ludum46.Code.Reusable
         /// </summary>
         static internal void TryMove(Vector2 move, Room actionRoom)
         {
-            if (actionRoom.PositionCollides(unscaledPixelPosition + move * 2))
+            if (actionRoom.PlayerPositionCollides(unscaledPixelPosition + move * 2))
             {
                 move = Vector2.Zero;
                 return;
