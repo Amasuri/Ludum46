@@ -40,6 +40,7 @@ namespace Ludum46.Code.Reusable
         private Animation sheetUpRight;
         private Animation sheetDownLeft;
         private Animation sheetDownRight;
+        private Animation lastAnimation;
 
         public PlayerDrawer(Ludum46 game)
         {
@@ -66,6 +67,8 @@ namespace Ludum46.Code.Reusable
             sheetUpRight.EnableDrawing();
             sheetDownLeft.EnableDrawing();
             sheetDownRight.EnableDrawing();
+
+            lastAnimation = sheetDown;
         }
 
         public void Draw(SpriteBatch batch)
@@ -74,27 +77,53 @@ namespace Ludum46.Code.Reusable
 
             //Stationary
             if (PlayerDataManager.lastMove == Vector2.Zero)
-                refGame.screenPool.drawShape.Draw(batch, Color.MediumOrchid, pos, playerFrame, Ludum46.Scale);
+            {
+                lastAnimation.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, 0);
+            }
 
             //Basic directions
             else if (PlayerDataManager.lastMove.X > 0 && PlayerDataManager.lastMove.Y == 0)
+            {
                 sheetRight.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+                lastAnimation = sheetRight;
+            }
             else if (PlayerDataManager.lastMove.X < 0 && PlayerDataManager.lastMove.Y == 0)
+            {
                 sheetLeft.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+                lastAnimation = sheetLeft;
+            }
             else if (PlayerDataManager.lastMove.X == 0 && PlayerDataManager.lastMove.Y < 0)
+            {
                 sheetUp.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+                lastAnimation = sheetUp;
+            }
             else if (PlayerDataManager.lastMove.X == 0 && PlayerDataManager.lastMove.Y > 0)
+            {
                 sheetDown.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+                lastAnimation = sheetDown;
+            }
 
             //Diagonal
             else if (PlayerDataManager.lastMove.X > 0 && PlayerDataManager.lastMove.Y < 0)
+            {
                 sheetUpRight.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+                lastAnimation = sheetUpRight;
+            }
             else if (PlayerDataManager.lastMove.X < 0 && PlayerDataManager.lastMove.Y < 0)
+            {
                 sheetUpLeft.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+                lastAnimation = sheetUpLeft;
+            }
             else if (PlayerDataManager.lastMove.X > 0 && PlayerDataManager.lastMove.Y > 0)
+            {
                 sheetDownRight.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+                lastAnimation = sheetDownRight;
+            }
             else if (PlayerDataManager.lastMove.X < 0 && PlayerDataManager.lastMove.Y > 0)
+            {
                 sheetDownLeft.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
+                lastAnimation = sheetDownLeft;
+            }
         }
     }
 }
