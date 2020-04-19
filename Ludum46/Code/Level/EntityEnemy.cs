@@ -91,6 +91,9 @@ namespace Ludum46.Code.Level
         public override void Draw(SpriteBatch batch, Vector2 unsCamera)
         {
             var pos = this.unsCoord - unsCamera;
+
+            SharedElements.DrawShadow(batch, pos * Ludum46.Scale);
+
             DrawMovement(batch, pos);
             DrawAttack(batch, pos);
 

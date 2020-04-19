@@ -79,6 +79,8 @@ namespace Ludum46.Code.Reusable
         {
             var pos = PlayerDataManager.unscaledPixelPosition - unscaledCameraDrawOffset;
 
+            SharedElements.DrawShadow(batch, pos * Ludum46.Scale);
+
             DrawPlayerMovementAnimations(batch, pos);
             DrawPlayerAttackAnimations(batch, pos);
         }

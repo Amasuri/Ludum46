@@ -60,6 +60,7 @@ namespace Ludum46.Code
 
             music = new MusicPlayer(this);
             AttackEffectPool.LoadAssets(this);
+            SharedElements.LoadAssets(this);
         }
 
         protected override void UnloadContent()
