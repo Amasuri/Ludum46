@@ -64,8 +64,19 @@ namespace Ludum46.Code.Reusable
         {
             if (oneKeyPress(keySlash))
             {
+                var attackRectList = new List<Rectangle> { };
+
+                if (lastNonNullMove.X < 0)
+                    attackRectList.Add(leftRectangle);
+                if (lastNonNullMove.X > 0)
+                    attackRectList.Add(rightRectangle);
+                if (lastNonNullMove.Y < 0)
+                    attackRectList.Add(upRectangle);
+                if (lastNonNullMove.Y > 0)
+                    attackRectList.Add(downRectangle);
+
                 game.level.SpawnAttackEntity(
-                    game, new List<Rectangle>() { upRectangle, downRectangle, leftRectangle, rightRectangle },
+                    game, attackRectList,
                     TargetedTo.Enemy, PlayerDataManager.unscaledPixelPosition, attackDelayMs);
 
                 blockAttackForMs = attackDelayMs;
@@ -91,6 +102,9 @@ namespace Ludum46.Code.Reusable
 
             if (move.X != 0 && move.Y != 0)
                 move.Normalize();
+
+            if (move.X != 0 || move.Y != 0)
+                lastNonNullMove = move;
 
             PlayerDataManager.TryMove(move, game.level.currentRoom);
         }
