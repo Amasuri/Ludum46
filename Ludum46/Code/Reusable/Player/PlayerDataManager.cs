@@ -9,6 +9,7 @@ namespace Ludum46.Code.Reusable
     public static class PlayerDataManager
     {
         static public Vector2 unscaledPixelPosition { get; private set; }
+        static public Vector2 unscaledFrameCenterPoint => unscaledPixelPosition + (PlayerDrawer.playerFrame / 2);
         static public Vector2 lastMove { get; private set; }
 
         static PlayerDataManager()

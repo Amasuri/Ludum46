@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ludum46.Code.Reusable;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace Ludum46.Code.Level
     {
         private readonly Rectangle relativeRect;
 
+        private Vector2 unscaledFrameCenterPoint => unsCoord + (this.relativeRect.Size.ToVector2() / 2);
+
+        private readonly int SIGHT_RANGE = 60;
+
         public EntityEnemy(Ludum46 game, string folderName, Vector2 coord, Rectangle enemyRectRelativeToImg, int hitPoints = 10)
             : base(game, "aaaa", coord, initRectAsImage: false, hitPoints)
         {
@@ -20,7 +25,12 @@ namespace Ludum46.Code.Level
 
         protected override void UpdateMovement(Ludum46 game)
         {
-            this.unsCoord += new Vector2(0f, 0.1f);
+            var move = Vector2.Zero;
+
+            if (Math.Abs(PlayerDataManager.unscaledFrameCenterPoint.Length() - this.unscaledFrameCenterPoint.Length()) < SIGHT_RANGE)
+                move = new Vector2(0, 0.1f);
+
+            this.unsCoord += move;
 
             //Updating the rectangle
             this.rectList[0] = new Rectangle(this.unsCoord.ToPoint() + this.relativeRect.Location, this.relativeRect.Size);
