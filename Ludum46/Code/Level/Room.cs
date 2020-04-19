@@ -35,7 +35,7 @@ namespace Ludum46.Code.Level
             //Debug spawn random enemies
             this.entities = new List<Entity>
             {
-                new EntityEnemy(game, "skeleton", new Vector2(130, 29), new Rectangle(new Point(7, 13), new Point(10, 5))),
+                new EntityEnemy(game, "skeleton", new Vector2(130, 29), new Rectangle(new Point(7, 13), new Point(10, 5)), hitPoints: 3),
             };
         }
 

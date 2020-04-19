@@ -8,13 +8,19 @@ namespace Ludum46.Code.Reusable
     /// </summary>
     public static class PlayerDataManager
     {
+        private const int MAX_HP = 7;
+        private static bool dead => hp <= 0;
+
         static public Vector2 unscaledPixelPosition { get; private set; }
         static public Vector2 unscaledFrameCenterPoint => unscaledPixelPosition + (PlayerDrawer.playerFrame / 2);
         static public Vector2 lastMove { get; private set; }
 
+        static public int hp { get; private set; }
+
         static PlayerDataManager()
         {
             unscaledPixelPosition = new Vector2(-10, 0);
+            hp = MAX_HP;
         }
 
         /// <summary>
@@ -38,6 +44,16 @@ namespace Ludum46.Code.Reusable
         static public void MoveAsMouse(Vector2 move)
         {
             unscaledPixelPosition += move;
+        }
+
+        static public void Hit()
+        {
+            hp--;
+        }
+
+        static public void Heal()
+        {
+            hp = MAX_HP;
         }
     }
 }

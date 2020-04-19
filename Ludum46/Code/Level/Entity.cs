@@ -10,7 +10,7 @@ namespace Ludum46.Code.Level
 {
     public class Entity
     {
-        public bool IsDead => hitPoints < 0;
+        public bool IsDead => hitPoints <= 0;
         private int hitPoints;
 
         protected List<Rectangle> rectList;

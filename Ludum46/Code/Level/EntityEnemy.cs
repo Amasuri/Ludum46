@@ -140,8 +140,8 @@ namespace Ludum46.Code.Level
             }
 
             //Doesn't make sense to do updates in case there's nothing to update
-            //if (move.X == 0 && move.Y == 0)
-            //    return;
+            if (move == Vector2.Zero && lastMove == Vector2.Zero)
+                return;
 
             //Check legitness (collisions)
             var rectFutur = new Rectangle(this.unsCoord.ToPoint() + (move * 5).ToPoint(), this.relativeRect.Size);
