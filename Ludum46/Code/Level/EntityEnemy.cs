@@ -15,6 +15,9 @@ namespace Ludum46.Code.Level
         private Vector2 unscaledFrameCenterPoint => unsCoord + (this.relativeRect.Size.ToVector2() / 2);
 
         private readonly int SIGHT_RANGE = 60;
+        private const float HOR_MOVE = 0.3f;
+        private const float VER_MOVE = HOR_MOVE / 3 * 2;
+        private const int DIFF_THRESHOLD = 5;
 
         public EntityEnemy(Ludum46 game, string folderName, Vector2 coord, Rectangle enemyRectRelativeToImg, int hitPoints = 10)
             : base(game, "aaaa", coord, initRectAsImage: false, hitPoints)
@@ -28,7 +31,21 @@ namespace Ludum46.Code.Level
             var move = Vector2.Zero;
 
             if (Math.Abs(PlayerDataManager.unscaledFrameCenterPoint.Length() - this.unscaledFrameCenterPoint.Length()) < SIGHT_RANGE)
-                move = new Vector2(0, 0.1f);
+            {
+                var posDiff = PlayerDataManager.unscaledFrameCenterPoint - this.unscaledFrameCenterPoint;
+
+                //X axis
+                if(posDiff.X > DIFF_THRESHOLD)
+                    move = new Vector2(HOR_MOVE, 0f);
+                else if (posDiff.X < -DIFF_THRESHOLD)
+                    move = new Vector2(-HOR_MOVE, 0f);
+
+                //Y axis
+                if (posDiff.Y > DIFF_THRESHOLD)
+                    move = new Vector2(move.X, VER_MOVE);
+                else if (posDiff.Y < -DIFF_THRESHOLD)
+                    move = new Vector2(move.X, -VER_MOVE);
+            }
 
             this.unsCoord += move;
 
