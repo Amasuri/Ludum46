@@ -40,10 +40,10 @@ namespace Ludum46.Code.Level
 
                 //Treeroom objects
                 new Object(game, "res/obj/tree_bottom", Object.DrawLevel.Wall, id: 17),
-                new Object(game, "res/obj/tree_place", Object.DrawLevel.Wall, id: 18),
-                new Object(game, "res/obj/tree_top", Object.DrawLevel.Wall, id: 19),
-                new Object(game, "res/obj/water_canal", Object.DrawLevel.Wall, id: 20),
-                new Object(game, "res/obj/water_grid", Object.DrawLevel.Wall, id: 21),
+                new Object(game, "res/obj/tree_place", Object.DrawLevel.Floor, id: 18, isSolid: false),
+                new Object(game, "res/obj/tree_top", Object.DrawLevel.AbovePlayer, id: 19, isSolid: false),
+                new Object(game, "res/obj/water_canal", Object.DrawLevel.Floor, id: 20),
+                new Object(game, "res/obj/water_grid", Object.DrawLevel.Floor, id: 21, isSolid: false),
                 new Object(game, "res/obj/waterfall", Object.DrawLevel.Wall, id: 22),
             };
         }

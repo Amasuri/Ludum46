@@ -13,7 +13,7 @@ namespace Ludum46.Code.Reusable
 
         static PlayerDataManager()
         {
-            unscaledPixelPosition = new Vector2(0, 0);
+            unscaledPixelPosition = new Vector2(-10, 0);
         }
 
         /// <summary>
