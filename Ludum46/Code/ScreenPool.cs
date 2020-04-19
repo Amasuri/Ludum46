@@ -26,6 +26,8 @@ namespace Ludum46.Code
         public Pixel drawShape;
         private PlayerDrawer playerDrawer;
 
+        private Color bgColor = new Color(121,103,85);
+
         public ScreenPool(Ludum46 game)
         {
             this.screenState = ScreenState.Playing;
@@ -39,7 +41,7 @@ namespace Ludum46.Code
         /// </summary>
         public void CallDraws(Ludum46 game, SpriteBatch defaultSpriteBatch, GraphicsDevice graphicsDevice)
         {
-            graphicsDevice.Clear(Color.SlateGray);
+            graphicsDevice.Clear(bgColor);
             defaultSpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             if (screenState == ScreenState.Start)
