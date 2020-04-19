@@ -19,7 +19,10 @@ namespace Ludum46.Code.Reusable
 
         public static Vector2 unscaledCameraDrawOffset => (PlayerDataManager.unscaledPixelPosition) - cameraRelative;
 
-        public static Rectangle Rect => new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint(), playerFrame.ToPoint());
+        /// <summary>
+        /// Doesn't refer to actual position, but to a rect relative to the frame
+        /// </summary>
+        public static Rectangle RectInsideFrame => new Rectangle(new Point(7, 13), new Point(10, 5));
 
         private static Vector2 playerFrame;
 

@@ -40,7 +40,7 @@ namespace Ludum46.Code.Level
 
         public bool PositionCollides(Vector2 pos)
         {
-            var futurePlayerRect = new Rectangle(pos.ToPoint(), PlayerDrawer.Rect.Size);
+            var futurePlayerRect = new Rectangle(pos.ToPoint() + PlayerDrawer.RectInsideFrame.Location, PlayerDrawer.RectInsideFrame.Size);
 
             foreach (var objList in objects)
             {
