@@ -69,7 +69,7 @@ namespace Ludum46.Code.Reusable
         public void DrawWithExternalCounter(SpriteBatch spritebatch, Vector2 pos, SpriteEffects effects, double drawAtMs)
         {
             double maxTime = maxFrameInd * changeFrameMs;
-            double frameTime = (int)drawAtMs % (int)maxFrameInd;
+            double frameTime = (int)drawAtMs % (int)maxTime;
             int currentFrame = (int)frameTime / (int)changeFrameMs;
 
             spritebatch.Draw(this.img, this.staticPos + pos, new Rectangle(

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ludum46.Code.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -78,6 +79,23 @@ namespace Ludum46.Code.Reusable
         {
             var pos = PlayerDataManager.unscaledPixelPosition - unscaledCameraDrawOffset;
 
+            DrawPlayerMovementAnimations(batch, pos);
+            DrawPlayerAttackAnimations(batch, pos);
+        }
+
+        private void DrawPlayerAttackAnimations(SpriteBatch batch, Vector2 pos)
+        {
+            if(PlayerController.currentAnimTime < AttackEffectPool.MAX_ATT_ANIM_TIME)
+            {
+                AttackEffectPool.DrawAttackAt(
+                    batch, PlayerController.currentAnimTime, PlayerController.currentAnimDirection,
+                    PlayerController.currentAnimType, pos * Ludum46.Scale
+                );
+            }
+        }
+
+        private void DrawPlayerMovementAnimations(SpriteBatch batch, Vector2 pos)
+        {
             //Stationary
             if (PlayerDataManager.lastMove == Vector2.Zero)
             {

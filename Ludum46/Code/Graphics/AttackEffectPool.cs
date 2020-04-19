@@ -29,20 +29,24 @@ namespace Ludum46.Code.Graphics
             Attack1, Attack2, Attack3
         }
 
+        /// <summary>
+        /// Useless for the class; reference for external classes
+        /// </summary>
+        public const double MAX_ATT_ANIM_TIME = 4 * frameDelta;
+        public const int frameDelta = 80;
         private static List<Animation> attacks1;
         private static List<Animation> attacks2;
         private static List<Animation> attacks3;
 
         public static void LoadAssets(Ludum46 game)
         {
-            LoadAttacksForList(game, attacks1, "attack1/");
-            LoadAttacksForList(game, attacks2, "attack2/");
-            LoadAttacksForList(game, attacks3, "attack3/");
+            LoadAttacksForList(game, ref attacks1, "attack1/");
+            LoadAttacksForList(game, ref attacks2, "attack2/");
+            LoadAttacksForList(game, ref attacks3, "attack3/");
         }
 
-        private static void LoadAttacksForList(Ludum46 game, List<Animation> list, string attackFolder)
+        private static void LoadAttacksForList(Ludum46 game, ref List<Animation> list, string attackFolder)
         {
-            float frameDelta = 80;
             int frameX = 28;
 
             list = new List<Animation>

@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ludum46.Code.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using static Ludum46.Code.Graphics.AttackEffectPool;
 using static Ludum46.Code.Level.EntityAttack;
 
 namespace Ludum46.Code.Reusable
@@ -27,6 +29,12 @@ namespace Ludum46.Code.Reusable
         private const float vertVelocity = horzVelocity / 3 * 2;
         private const int attackDelayMs = 200;
         private static double blockAttackForMs = 0;
+
+        //Since attack animations are in shared pool (to reduce overhead)
+        //entities track time variables on their own
+        public static double currentAnimTime { get; private set; } = AttackEffectPool.MAX_ATT_ANIM_TIME + 1d;
+        public static Direction currentAnimDirection { get; private set; }
+        public static Type currentAnimType { get; private set; }
 
         //Needed to know how to place slashes
         private static Vector2 lastNonNullMove = new Vector2(0, +vertVelocity);
@@ -55,6 +63,10 @@ namespace Ludum46.Code.Reusable
                 blockAttackForMs -= Ludum46.DeltaUpdate;
             }
 
+            //AttackAnimTimers should be updated regardless
+            if (currentAnimTime < MAX_ATT_ANIM_TIME)
+                currentAnimTime += Ludum46.DeltaUpdate;
+
             oldKeyState = keyState;
         }
 
@@ -78,6 +90,11 @@ namespace Ludum46.Code.Reusable
                     TargetedTo.Enemy, PlayerDataManager.unscaledPixelPosition, attackDelayMs);
 
                 blockAttackForMs = attackDelayMs;
+
+                //Attack timers for animation
+                currentAnimTime = 0d;
+                currentAnimDirection = Direction.Down;
+                currentAnimType = Type.Attack1;
             }
             else if (oneKeyPress(keyWhack))
             {
