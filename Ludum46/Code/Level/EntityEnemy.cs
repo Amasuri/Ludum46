@@ -143,10 +143,9 @@ namespace Ludum46.Code.Level
             if (blockAfterAttackForMs >= 0f)
                 return;
 
-            if (Math.Abs(PlayerDataManager.unscaledFrameCenterPoint.Length() - this.unscaledFrameCenterPoint.Length()) < SIGHT_RANGE)
+            var posDiff = PlayerDataManager.unscaledFrameCenterPoint - this.unscaledFrameCenterPoint;
+            if (posDiff.Length() < SIGHT_RANGE && posDiff.Length() >= ATT_RANGE - 1.1f)
             {
-                var posDiff = PlayerDataManager.unscaledFrameCenterPoint - this.unscaledFrameCenterPoint;
-
                 //X axis
                 if(posDiff.X > DIFF_THRESHOLD)
                     move = new Vector2(HOR_MOVE, 0f);
