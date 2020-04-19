@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ludum46.Code.Graphics.AttackEffectPool;
 using static Ludum46.Code.Level.EntityAttack;
+using Ludum46.Code.Graphics;
 
 namespace Ludum46.Code.Level
 {
@@ -51,6 +53,13 @@ namespace Ludum46.Code.Level
         private Rectangle downRectangle =>
             new Rectangle(this.unsCoord.ToPoint() + new Point(0, (int)PlayerDrawer.playerFrame.Y), new Point((int)PlayerDrawer.playerFrame.X, 5));
 
+        //Since attack animations are in shared pool (to reduce overhead)
+        //entities track time variables on their own
+        protected double currentAnimTime { get; private set; } = AttackEffectPool.MAX_ATT_ANIM_TIME + 1d;
+        protected Direction currentAnimDirection { get; private set; }
+        protected AttackEffectPool.Type currentAnimType { get; private set; }
+        protected AttackEffectPool.Type attackType;
+
         public EntityEnemy(Ludum46 game, string folderName, Vector2 coord, Rectangle enemyRectRelativeToImg, int hitPoints = 10)
             : base(game, "aaaa", coord, initRectAsImage: false, hitPoints)
         {
@@ -82,7 +91,25 @@ namespace Ludum46.Code.Level
         public override void Draw(SpriteBatch batch, Vector2 unsCamera)
         {
             var pos = this.unsCoord - unsCamera;
+            DrawMovement(batch, pos);
+            DrawAttack(batch, pos);
 
+            base.Draw(batch, unsCamera);
+        }
+
+        private void DrawAttack(SpriteBatch batch, Vector2 pos)
+        {
+            if (currentAnimTime < MAX_ATT_ANIM_TIME)
+            {
+                AttackEffectPool.DrawAttackAt(
+                    batch, currentAnimTime, currentAnimDirection,
+                    currentAnimType, pos * Ludum46.Scale
+                );
+            }
+        }
+
+        private void DrawMovement(SpriteBatch batch, Vector2 pos)
+        {
             //Stationary
             if (this.lastMove == Vector2.Zero)
             {
@@ -132,8 +159,6 @@ namespace Ludum46.Code.Level
                 sheetDownLeft.Draw(batch, pos * Ludum46.Scale, SpriteEffects.None, Ludum46.DeltaDraw);
                 lastAnimation = sheetDownLeft;
             }
-
-            base.Draw(batch, unsCamera);
         }
 
         protected override void UpdateMovement(Ludum46 game)
@@ -181,8 +206,12 @@ namespace Ludum46.Code.Level
 
         protected override void UpdateCustom(Ludum46 game)
         {
+            //AttackAnimTimers should be updated regardless
+            if (currentAnimTime < MAX_ATT_ANIM_TIME)
+                currentAnimTime += Ludum46.DeltaUpdate;
+
             //If attack cooldown is still in the effect
-            if(blockAfterAttackForMs >= 0f)
+            if (blockAfterAttackForMs >= 0f)
             {
                 blockAfterAttackForMs -= Ludum46.DeltaUpdate;
                 return;
@@ -222,6 +251,40 @@ namespace Ludum46.Code.Level
                 TargetedTo.Player, PlayerDataManager.unscaledPixelPosition, ATT_COOLDOWN);
 
             blockAfterAttackForMs = ATT_COOLDOWN;
+
+            //Attack timers for animation
+            currentAnimTime = 0d;
+            currentAnimDirection = this.GetCurrentDirection();
+            currentAnimType = this.GetNextAttackType();
+        }
+
+        protected AttackEffectPool.Direction GetCurrentDirection()
+        {
+            if (lastAnimation == sheetLeft)
+                return AttackEffectPool.Direction.Left;
+            else if (lastAnimation == sheetRight)
+                return AttackEffectPool.Direction.Right;
+            else if (lastAnimation == sheetUp)
+                return AttackEffectPool.Direction.Up;
+            else if (lastAnimation == sheetDown)
+                return AttackEffectPool.Direction.Down;
+            else if (lastAnimation == sheetUpLeft)
+                return AttackEffectPool.Direction.Upleft;
+            else if (lastAnimation == sheetUpRight)
+                return AttackEffectPool.Direction.UpRight;
+            else if (lastAnimation == sheetDownLeft)
+                return AttackEffectPool.Direction.DownLeft;
+            else
+                return AttackEffectPool.Direction.DownRight;
+        }
+
+        protected AttackEffectPool.Type GetNextAttackType()
+        {
+            attackType++;
+            if (attackType > AttackEffectPool.Type.Attack2)
+                attackType = AttackEffectPool.Type.Attack1;
+
+            return attackType;
         }
     }
 }
