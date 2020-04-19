@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using static Ludum46.Code.Level.EntityAttack;
 
 namespace Ludum46.Code.Reusable
 {
@@ -27,22 +29,40 @@ namespace Ludum46.Code.Reusable
         //Needed to know how to place slashes
         private static Vector2 lastNonNullMove = new Vector2(0, +vertVelocity);
 
+        //Attack rectangles
+        private static Rectangle nullRectangle =>
+            new Rectangle(new Point(0, 0), new Point(0, 0));
+        private static Rectangle leftRectangle =>
+            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(-5, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
+        private static Rectangle rightRectangle =>
+            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point((int)PlayerDrawer.playerFrame.X, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
+        private static Rectangle upRectangle =>
+            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(0, -5), new Point((int)PlayerDrawer.playerFrame.X, 5));
+        private static Rectangle downRectangle =>
+            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(0, (int)PlayerDrawer.playerFrame.Y), new Point((int)PlayerDrawer.playerFrame.X, 5));
+
         static public void UpdateControls(Ludum46 game)
         {
             keyState = Keyboard.GetState();
 
             UpdateMovement(game);
-            UpdateAttack();
+            UpdateAttack(game);
 
             oldKeyState = keyState;
         }
 
-        private static void UpdateAttack()
+        private static void UpdateAttack(Ludum46 game)
         {
             if (oneKeyPress(keySlash))
-                ;// game.level.SpawnAttackEntity();
+            {
+                game.level.SpawnAttackEntity(
+                    game, new List<Rectangle>() { upRectangle, downRectangle, leftRectangle, rightRectangle },
+                    TargetedTo.Enemy, PlayerDataManager.unscaledPixelPosition, 200);
+            }
             else if (oneKeyPress(keyWhack))
+            {
                 ;
+            }
         }
 
         private static void UpdateMovement(Ludum46 game)

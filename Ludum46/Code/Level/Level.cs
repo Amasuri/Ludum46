@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,11 @@ namespace Ludum46.Code.Level
         public void Update(Ludum46 ludum46)
         {
             currentRoom.Update(ludum46);
+        }
+
+        public void SpawnAttackEntity(Ludum46 game, List<Rectangle> rectList, EntityAttack.TargetedTo target, Vector2 unscPos, int timeToLive)
+        {
+            currentRoom.SpawnAttackEntity(game, rectList, target, unscPos, timeToLive);
         }
     }
 }

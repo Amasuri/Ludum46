@@ -27,7 +27,10 @@ namespace Ludum46.Code.Reusable
         /// </summary>
         public static Rectangle RectInsideFrame => new Rectangle(new Point(7, 13), new Point(10, 5));
 
-        private static Vector2 playerFrame;
+        /// <summary>
+        /// NOT THE ACTUAL PLAYER SIZE, but the frame thing
+        /// </summary>
+        public static Vector2 playerFrame { get; private set; }
 
         private Ludum46 refGame;
 

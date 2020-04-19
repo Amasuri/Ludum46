@@ -23,7 +23,7 @@ namespace Ludum46.Code.Level
 
         public bool readyToDie => timeToLiveMs < 0;
 
-        public EntityAttack(Ludum46 game, string imgPath, Vector2 coord, float timeToLiveMs, TargetedTo targetedTo)
+        public EntityAttack(Ludum46 game, string imgPath, Vector2 coord, float timeToLiveMs, TargetedTo targetedTo, List<Rectangle> rectList)
             : base(game, imgPath, coord)
         {
             this.timeToLiveMs = timeToLiveMs;

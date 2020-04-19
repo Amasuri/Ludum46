@@ -140,5 +140,10 @@ namespace Ludum46.Code.Level
                 entiity.Update(ludum46);
             }
         }
+
+        public void SpawnAttackEntity(Ludum46 game, List<Rectangle> rectList, EntityAttack.TargetedTo target, Vector2 unscPos, int timeToLive)
+        {
+            entities.Add(new EntityAttack(game, "aaaa", unscPos, timeToLive, target, rectList));
+        }
     }
 }
