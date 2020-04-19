@@ -44,14 +44,14 @@ namespace Ludum46.Code.Reusable
         }
 
         /// <summary>
-        /// Draws current frame of animation, with offset from usual pos by offset.
+        /// Draws current frame of animation at pos
         /// </summary>
-        public void Draw(SpriteBatch spritebatch, Vector2 offsetFromUsualDrawPos, SpriteEffects effects, double delta, bool doTick = true)
+        public void Draw(SpriteBatch spritebatch, Vector2 pos, SpriteEffects effects, double delta, bool doTick = true)
         {
             if (!this.isDrawn)
                 return;
 
-            spritebatch.Draw(this.img, this.staticPos+offsetFromUsualDrawPos, new Rectangle(
+            spritebatch.Draw(this.img, this.staticPos+pos, new Rectangle(
                   frameSize.X * currentFrameInd,
                   0,
                   frameSize.X,
@@ -63,41 +63,21 @@ namespace Ludum46.Code.Reusable
         }
 
         /// <summary>
-        /// Draws current frame of animation at pos.
+        /// Draw by recieving frame counter outside. Useful when there should be several separate instances with their own time,
+        /// but copying the entire class with file produces too much overhead.
         /// </summary>
-        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, double delta, Vector2 pos, bool doTick = true)
+        public void DrawWithExternalCounter(SpriteBatch spritebatch, Vector2 pos, SpriteEffects effects, double drawAtMs)
         {
-            if (!this.isDrawn)
-                return;
+            double maxTime = maxFrameInd * changeFrameMs;
+            double frameTime = (int)drawAtMs % (int)maxFrameInd;
+            int currentFrame = (int)frameTime / (int)changeFrameMs;
 
-            spritebatch.Draw(this.img, pos, new Rectangle(
-                    frameSize.X * currentFrameInd,
-                    0,
-                    frameSize.X,
-                    frameSize.Y),
-                Color.White, 0f, Vector2.Zero, this.imageScale, effects, 1);
-
-            if (doTick)
-                this.Tick(delta);
-        }
-
-        /// <summary>
-        /// Draws animation at default pos.
-        /// </summary>
-        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, double delta, bool doTick = true)
-        {
-            if (!this.isDrawn)
-                return;
-
-            spritebatch.Draw(this.img, staticPos, new Rectangle(
-                    frameSize.X * currentFrameInd,
-                    0,
-                    frameSize.X,
-                    frameSize.Y),
-                Color.White, 0f, Vector2.Zero, this.imageScale, effects, 1);
-
-            if (doTick)
-                this.Tick(delta);
+            spritebatch.Draw(this.img, this.staticPos + pos, new Rectangle(
+                  frameSize.X * currentFrame,
+                  0,
+                  frameSize.X,
+                  frameSize.Y),
+                  Color.White, 0f, Vector2.Zero, this.imageScale, effects, 1);
         }
 
         /// <summary>
