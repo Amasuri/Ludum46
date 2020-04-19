@@ -33,10 +33,10 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/walls/wall12", Object.DrawLevel.Wall, id: 12),
 
                 //Arches, etc
-                new Object(game, "res/obj/walls/arch_left", Object.DrawLevel.AbovePlayer, id: 13),
-                new Object(game, "res/obj/walls/arch_right", Object.DrawLevel.AbovePlayer, id: 14),
+                new Object(game, "res/obj/walls/arch_left", Object.DrawLevel.Wall, id: 13),
+                new Object(game, "res/obj/walls/arch_right", Object.DrawLevel.Wall, id: 14),
                 new Object(game, "res/obj/walls/arch_top", Object.DrawLevel.AbovePlayer, id: 15),
-                new Object(game, "res/obj/walls/entrance", Object.DrawLevel.AbovePlayer, id: 16),
+                new Object(game, "res/obj/walls/entrance", Object.DrawLevel.Floor, id: 16, isSolid: false),
 
                 //Treeroom objects
                 new Object(game, "res/obj/tree_bottom", Object.DrawLevel.Wall, id: 17),
