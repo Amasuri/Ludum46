@@ -154,8 +154,15 @@ namespace Ludum46.Code.Level
 
         public void Update(Ludum46 ludum46)
         {
-            //Basically this involves checking everythin including bullets and enemies
-            foreach (var entiity in entities)
+            //Enemies spawn entities so careful here
+            var oomph = entities.Where(x => x is EntityEnemy).ToList();
+            foreach (var entiity in oomph)
+            {
+                entiity.Update(ludum46);
+            }
+
+            //Update everything else
+            foreach (var entiity in entities.Where(x => !(x is EntityEnemy)))
             {
                 entiity.Update(ludum46);
             }

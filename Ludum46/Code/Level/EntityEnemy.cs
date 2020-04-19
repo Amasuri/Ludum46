@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ludum46.Code.Level.EntityAttack;
 
 namespace Ludum46.Code.Level
 {
@@ -19,6 +20,9 @@ namespace Ludum46.Code.Level
         private const float HOR_MOVE = 0.3f;
         private const float VER_MOVE = HOR_MOVE / 3 * 2;
         private const int DIFF_THRESHOLD = 5;
+        private const int ATT_DELAY = 200;
+
+        private double blockAttackForMs = 0;
 
         //Visual
         private Animation sheetLeft;
@@ -32,6 +36,17 @@ namespace Ludum46.Code.Level
         private Animation lastAnimation;
 
         private Vector2 lastMove;
+        private Vector2 lastNonNullMove = new Vector2(0, HOR_MOVE);
+
+        //Attack rects
+        private Rectangle leftRectangle =>
+            new Rectangle(this.unsCoord.ToPoint() + new Point(-5, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
+        private Rectangle rightRectangle =>
+            new Rectangle(this.unsCoord.ToPoint() + new Point((int)PlayerDrawer.playerFrame.X, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
+        private Rectangle upRectangle =>
+            new Rectangle(this.unsCoord.ToPoint() + new Point(0, -5), new Point((int)PlayerDrawer.playerFrame.X, 5));
+        private Rectangle downRectangle =>
+            new Rectangle(this.unsCoord.ToPoint() + new Point(0, (int)PlayerDrawer.playerFrame.Y), new Point((int)PlayerDrawer.playerFrame.X, 5));
 
         public EntityEnemy(Ludum46 game, string folderName, Vector2 coord, Rectangle enemyRectRelativeToImg, int hitPoints = 10)
             : base(game, "aaaa", coord, initRectAsImage: false, hitPoints)
@@ -122,6 +137,9 @@ namespace Ludum46.Code.Level
         {
             var move = Vector2.Zero;
 
+            if (blockAttackForMs >= 0f)
+                return;
+
             if (Math.Abs(PlayerDataManager.unscaledFrameCenterPoint.Length() - this.unscaledFrameCenterPoint.Length()) < SIGHT_RANGE)
             {
                 var posDiff = PlayerDataManager.unscaledFrameCenterPoint - this.unscaledFrameCenterPoint;
@@ -152,9 +170,37 @@ namespace Ludum46.Code.Level
 
             this.unsCoord += move;
             this.lastMove = move;
+            if (move != Vector2.Zero)
+                this.lastNonNullMove = move;
 
             //Updating the rectangle
             this.rectList[0] = new Rectangle(this.unsCoord.ToPoint() + this.relativeRect.Location, this.relativeRect.Size);
+        }
+
+        protected override void UpdateCustom(Ludum46 game)
+        {
+            if(blockAttackForMs >= 0f)
+            {
+                blockAttackForMs -= Ludum46.DeltaUpdate;
+                return;
+            }
+
+            var attackRectList = new List<Rectangle> { };
+
+            if (lastNonNullMove.X < 0)
+                attackRectList.Add(leftRectangle);
+            if (lastNonNullMove.X > 0)
+                attackRectList.Add(rightRectangle);
+            if (lastNonNullMove.Y < 0)
+                attackRectList.Add(upRectangle);
+            if (lastNonNullMove.Y > 0)
+                attackRectList.Add(downRectangle);
+
+            game.level.SpawnAttackEntity(
+                game, attackRectList,
+                TargetedTo.Player, PlayerDataManager.unscaledPixelPosition, ATT_DELAY);
+
+            blockAttackForMs = ATT_DELAY;
         }
     }
 }

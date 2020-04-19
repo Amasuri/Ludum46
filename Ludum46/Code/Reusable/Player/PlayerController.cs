@@ -32,8 +32,6 @@ namespace Ludum46.Code.Reusable
         private static Vector2 lastNonNullMove = new Vector2(0, +vertVelocity);
 
         //Attack rectangles
-        private static Rectangle nullRectangle =>
-            new Rectangle(new Point(0, 0), new Point(0, 0));
         private static Rectangle leftRectangle =>
             new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(-5, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
         private static Rectangle rightRectangle =>
