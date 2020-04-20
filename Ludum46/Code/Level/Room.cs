@@ -42,7 +42,7 @@ namespace Ludum46.Code.Level
             //Debug spawn random enemies
             this.entities = new List<Entity>();
 
-            if (id == 1)
+            if (id == 0)
             {
                 this.entities.Add(SpawnSkeletal(game, new Vector2(130, 29)));
             }
@@ -99,7 +99,7 @@ namespace Ludum46.Code.Level
                 this.objects.Remove(posToDelete);
         }
 
-        public bool EntityPositionCollides(Rectangle entityRectFutur)
+        public bool EntityPositionCollides(Rectangle entityRectFutur, bool checkStone = true)
         {
             foreach (var objList in objects)
             {
@@ -114,6 +114,10 @@ namespace Ludum46.Code.Level
                         return true;
                 }
             }
+
+            if(checkStone == true)
+                if (entityStone.GetRectList()[0].Intersects(entityRectFutur))
+                    return true;
 
             return false;
         }

@@ -22,7 +22,7 @@ namespace Ludum46.Code.Level
 
         public void TryPush(Vector2 move, Room actionRoom)
         {
-            if (actionRoom.EntityPositionCollides(new Rectangle((this.unsCoord + move * 5).ToPoint(), this.GetRectList()[0].Size)))
+            if (actionRoom.EntityPositionCollides(new Rectangle((this.unsCoord + move * 5).ToPoint(), this.GetRectList()[0].Size), checkStone: false))
             {
                 move = Vector2.Zero;
                 return;
