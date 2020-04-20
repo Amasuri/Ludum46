@@ -95,6 +95,11 @@ namespace Ludum46.Code.Reusable
                 currentAnimTime = 0d;
                 currentAnimDirection = game.screenPool.playerDrawer.GetCurrentDirection();
                 currentAnimType = PlayerDataManager.GetNextAttackType();
+
+                if (currentAnimType == Type.Attack3)
+                    game.soundPlayer.PlaySound(SoundPlayer.Type.swing3);
+                else
+                    game.soundPlayer.PlaySound(SoundPlayer.Type.swing1);
             }
             else if (oneKeyPress(keyWhack))
             {

@@ -16,6 +16,7 @@ namespace Ludum46.Code.Graphics
         private int pixAlpha = 0;
 
         private const string EndBadText = "You have fallen in battle,\n and therefore, your tree has died.";
+        private const string EndGoodText = "You have saved your dear friend. \n Your life together may continue for more.";
 
         public EndScreen(Ludum46 game)
         {
@@ -38,6 +39,10 @@ namespace Ludum46.Code.Graphics
             //Good end
             else
             {
+                var size = ScreenPool.fontBig.MeasureString(EndGoodText);
+                var pos = (new Vector2(Ludum46.ScaledWidth, Ludum46.ScaledHeight) - size) / 2;
+
+                spriteBatch.DrawString(ScreenPool.fontBig, EndGoodText, pos, new Color(200, 200, 200, pixAlpha));
             }
         }
 

@@ -260,6 +260,11 @@ namespace Ludum46.Code.Level
             currentAnimTime = 0d;
             currentAnimDirection = this.GetCurrentDirection();
             currentAnimType = this.GetNextAttackType();
+
+            if (currentAnimType == AttackEffectPool.Type.Attack3)
+                game.soundPlayer.PlaySound(SoundPlayer.Type.swing3);
+            else
+                game.soundPlayer.PlaySound(SoundPlayer.Type.swing1);
         }
 
         protected AttackEffectPool.Direction GetCurrentDirection()

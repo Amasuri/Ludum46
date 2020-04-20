@@ -18,20 +18,32 @@ namespace Ludum46.Code.Reusable
             waterfall,
         }
 
-        private Dictionary<Type, SoundEffect> sounds;
+        private Dictionary<Type, SoundEffect> soundsFast;
+        private Dictionary<Type, SoundEffectInstance> soundLoops;
 
         public SoundPlayer(Ludum46 game)
         {
-            sounds = new Dictionary<Type, SoundEffect>
+            soundsFast = new Dictionary<Type, SoundEffect>
             {
-                { Type.Hit, game.Content.Load<SoundEffect>("res/sound/hit") }
+                { Type.Hit, game.Content.Load<SoundEffect>("res/sound/hit") },
+                { Type.swing1, game.Content.Load<SoundEffect>("res/sound/swing1") },
+                { Type.swing3, game.Content.Load<SoundEffect>("res/sound/swing3") },
+                { Type.SkeleDeath2, game.Content.Load<SoundEffect>("res/sound/skeledeath2") },
+            };
+
+            soundLoops = new Dictionary<Type, SoundEffectInstance>
+            {
+                { Type.Drag, game.Content.Load<SoundEffect>("res/sound/drag").CreateInstance() },
             };
         }
 
         public void PlaySound(Type type)
         {
-            if (sounds.ContainsKey(type))
-                sounds[type].Play();
+            if (soundsFast.ContainsKey(type))
+                soundsFast[type].Play();
+
+            if (soundLoops.ContainsKey(type))
+                soundLoops[type].Play();
         }
     }
 }
