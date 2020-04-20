@@ -53,7 +53,7 @@ namespace Ludum46.Code.Level
 
         private static EntityEnemy SpawnSkeletal(Ludum46 game, Vector2 pos)
         {
-            return new EntityEnemy(game, "skeleton", pos, new Rectangle(new Point(7, 13), new Point(10, 5)), hitPoints: 3);
+            return new EntityEnemy(game, "skeleton", pos, new Rectangle(new Point(7, 5), new Point(10, 13)), hitPoints: 3);
         }
 
         public bool PlayerPositionCollides(Vector2 pos)
