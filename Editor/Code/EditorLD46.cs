@@ -67,7 +67,7 @@ namespace Editor
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Red);
+            GraphicsDevice.Clear(new Color(153, 230, 95));
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             this.level.Draw(spriteBatch, this);

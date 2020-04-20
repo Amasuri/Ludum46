@@ -103,6 +103,10 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/decor/decor16", Object.DrawLevel.Floor, id: 70, isSolid: false),
                 new Object(game, "res/obj/decor/decor17", Object.DrawLevel.Floor, id: 71, isSolid: false),
                 new Object(game, "res/obj/decor/decor18", Object.DrawLevel.Floor, id: 72, isSolid: false),
+
+                //Two more walls for quick-ness
+                new Object(game, "res/obj/walls/wall13", Object.DrawLevel.Wall, id: 73),
+                new Object(game, "res/obj/walls/wall14", Object.DrawLevel.Wall, id: 74),
             };
 
             //Sanity check
