@@ -11,7 +11,7 @@ namespace Ludum46.Code.Reusable
     public static class PlayerDataManager
     {
         private const int MAX_HP = 7;
-        private static bool dead => hp <= 0;
+        public static bool dead => hp <= 0;
 
         static public Vector2 unscaledPixelPosition { get; private set; }
         static public Vector2 unscaledFrameCenterPoint => unscaledPixelPosition + (PlayerDrawer.playerFrame / 2);

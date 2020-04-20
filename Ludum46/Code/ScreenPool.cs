@@ -1,4 +1,5 @@
-﻿using Ludum46.Code.Reusable;
+﻿using Ludum46.Code.Graphics;
+using Ludum46.Code.Reusable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,15 +26,23 @@ namespace Ludum46.Code
 
         public Pixel drawShape;
         public PlayerDrawer playerDrawer { get; private set; }
+        public EndScreen endScreen { get; private set; }
 
         private Color bgColor = new Color(121,103,85);
+
+        public static SpriteFont font;
+        public static SpriteFont fontBig;
 
         public ScreenPool(Ludum46 game)
         {
             this.screenState = ScreenState.Playing;
 
+            font = game.Content.Load<SpriteFont>("res/font/font");
+            fontBig = game.Content.Load<SpriteFont>("res/font/font2");
+
             drawShape = new Pixel(game.GraphicsDevice);
             playerDrawer = new PlayerDrawer(game);
+            endScreen = new EndScreen(game);
         }
 
         /// <summary>
@@ -55,6 +64,11 @@ namespace Ludum46.Code
             }
             else if (screenState == ScreenState.EndGame)
             {
+                game.level.Draw(defaultSpriteBatch, game);
+                playerDrawer.Draw(defaultSpriteBatch);
+                game.level.DrawFront(defaultSpriteBatch, game);
+
+                endScreen.Draw(game, defaultSpriteBatch);
             }
 
             defaultSpriteBatch.End();
@@ -72,9 +86,13 @@ namespace Ludum46.Code
             else if (screenState == ScreenState.Playing)
             {
                 game.level.Update(game);
+
+                if (PlayerDataManager.dead)
+                    screenState = ScreenState.EndGame;
             }
             else if (screenState == ScreenState.EndGame)
             {
+                endScreen.Update(game, _mouse, _oldMouse, _key, _oldKey);
             }
 
             this._oldKey = this._key;
