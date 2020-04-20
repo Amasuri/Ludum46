@@ -49,6 +49,60 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/waterfall0", Object.DrawLevel.Wall, id: 24),
                 new Object(game, "res/obj/waterfall1", Object.DrawLevel.Wall, id: 25),
                 new Object(game, "res/obj/waterfall2", Object.DrawLevel.Wall, id: 26),
+
+                //Misc decorations
+                new Object(game, "res/obj/column0", Object.DrawLevel.Wall, id: 27),
+                new Object(game, "res/obj/column1", Object.DrawLevel.AbovePlayer, id: 28, isSolid: false),
+                new Object(game, "res/obj/ruined_wall", Object.DrawLevel.Wall, id: 29),
+                new Object(game, "res/obj/slope0", Object.DrawLevel.Wall, id: 30),
+                new Object(game, "res/obj/slope1", Object.DrawLevel.Wall, id: 31),
+                new Object(game, "res/obj/slope2", Object.DrawLevel.Wall, id: 32),
+
+                //Water
+                new Object(game, "res/obj/water/water0", Object.DrawLevel.Wall, id: 33),
+                new Object(game, "res/obj/water/water1", Object.DrawLevel.Wall, id: 34),
+                new Object(game, "res/obj/water/water2", Object.DrawLevel.Wall, id: 35),
+                new Object(game, "res/obj/water/water3", Object.DrawLevel.Wall, id: 36),
+                new Object(game, "res/obj/water/water4", Object.DrawLevel.Wall, id: 37),
+                new Object(game, "res/obj/water/water5", Object.DrawLevel.Wall, id: 38),
+                new Object(game, "res/obj/water/water6", Object.DrawLevel.Wall, id: 39),
+                new Object(game, "res/obj/water/water7", Object.DrawLevel.Wall, id: 40),
+                new Object(game, "res/obj/water/water8", Object.DrawLevel.Wall, id: 41),
+                new Object(game, "res/obj/water/water9", Object.DrawLevel.Wall, id: 42),
+                new Object(game, "res/obj/water/water10", Object.DrawLevel.Wall, id: 43),
+                new Object(game, "res/obj/water/water11", Object.DrawLevel.Wall, id: 44),
+
+                //Low walls
+                new Object(game, "res/obj/low_walls/low_wall0", Object.DrawLevel.Wall, id: 45),
+                new Object(game, "res/obj/low_walls/low_wall1", Object.DrawLevel.Wall, id: 46),
+                new Object(game, "res/obj/low_walls/low_wall2", Object.DrawLevel.Wall, id: 47),
+                new Object(game, "res/obj/low_walls/low_wall3", Object.DrawLevel.Wall, id: 48),
+                new Object(game, "res/obj/low_walls/low_wall4", Object.DrawLevel.Wall, id: 49),
+                new Object(game, "res/obj/low_walls/low_wall5", Object.DrawLevel.Wall, id: 50),
+                new Object(game, "res/obj/low_walls/low_wall6", Object.DrawLevel.Wall, id: 51),
+                new Object(game, "res/obj/low_walls/low_wall7", Object.DrawLevel.Wall, id: 52),
+                new Object(game, "res/obj/low_walls/low_wall8", Object.DrawLevel.Wall, id: 53),
+
+                //Decorations
+                new Object(game, "res/obj/decor/decor0", Object.DrawLevel.Floor, id: 54, isSolid: false),
+                new Object(game, "res/obj/decor/decor1", Object.DrawLevel.Floor, id: 55, isSolid: false),
+                new Object(game, "res/obj/decor/decor2", Object.DrawLevel.Floor, id: 56, isSolid: false),
+                new Object(game, "res/obj/decor/decor3", Object.DrawLevel.Floor, id: 57, isSolid: false),
+                new Object(game, "res/obj/decor/decor4", Object.DrawLevel.Floor, id: 58, isSolid: false),
+                new Object(game, "res/obj/decor/decor5", Object.DrawLevel.Floor, id: 59, isSolid: false),
+                new Object(game, "res/obj/decor/decor6", Object.DrawLevel.Floor, id: 60, isSolid: false),
+                new Object(game, "res/obj/decor/decor7", Object.DrawLevel.Floor, id: 61, isSolid: false),
+                new Object(game, "res/obj/decor/decor8", Object.DrawLevel.Floor, id: 62, isSolid: false),
+                new Object(game, "res/obj/decor/decor9", Object.DrawLevel.Floor, id: 63, isSolid: false),
+                new Object(game, "res/obj/decor/decor10", Object.DrawLevel.Floor, id: 64, isSolid: false),
+                new Object(game, "res/obj/decor/decor11", Object.DrawLevel.Floor, id: 65, isSolid: false),
+                new Object(game, "res/obj/decor/decor12", Object.DrawLevel.Floor, id: 66, isSolid: false),
+                new Object(game, "res/obj/decor/decor13", Object.DrawLevel.Floor, id: 67, isSolid: false),
+                new Object(game, "res/obj/decor/decor14", Object.DrawLevel.Floor, id: 68, isSolid: false),
+                new Object(game, "res/obj/decor/decor15", Object.DrawLevel.Floor, id: 69, isSolid: false),
+                new Object(game, "res/obj/decor/decor16", Object.DrawLevel.Floor, id: 70, isSolid: false),
+                new Object(game, "res/obj/decor/decor17", Object.DrawLevel.Floor, id: 71, isSolid: false),
+                new Object(game, "res/obj/decor/decor18", Object.DrawLevel.Floor, id: 72, isSolid: false),
             };
         }
     }
