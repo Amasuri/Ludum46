@@ -10,7 +10,7 @@ namespace Ludum46.Code.Level
 {
     public class Level
     {
-        private enum RoomType
+        public enum RoomType
         {
             TreeRoom = 0,
             BattleRoom = 1,
@@ -20,7 +20,7 @@ namespace Ludum46.Code.Level
         public Room currentRoom => rooms[currentRoomType];
 
         private Dictionary<RoomType, Room> rooms;
-        private RoomType currentRoomType;
+        public RoomType currentRoomType { get; private set; }
 
         public Level(Ludum46 game)
         {
