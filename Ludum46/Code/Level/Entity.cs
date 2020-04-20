@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ludum46.Code.Reusable;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -65,7 +66,7 @@ namespace Ludum46.Code.Level
             return rectList;
         }
 
-        virtual public void Hit()
+        virtual public void Hit(Ludum46 game)
         {
             this.hitPoints--;
         }

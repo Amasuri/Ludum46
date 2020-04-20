@@ -16,6 +16,8 @@ namespace Ludum46.Code.Reusable
         static public Vector2 unscaledFrameCenterPoint => unscaledPixelPosition + (PlayerDrawer.playerFrame / 2);
         static public Vector2 lastMove { get; private set; }
 
+        static public Rectangle unscPlayerRect => new Rectangle(unscaledPixelPosition.ToPoint() + PlayerDrawer.RectInsideFrame.Location, PlayerDrawer.RectInsideFrame.Size);
+
         static public int hp { get; private set; }
         public static bool HasTouchedTheStone { get; private set; }
 
@@ -52,10 +54,11 @@ namespace Ludum46.Code.Reusable
             unscaledPixelPosition += move;
         }
 
-        static public void Hit()
+        static public void Hit(Ludum46 game)
         {
             hp--;
             MusicPlayer.ReplenishAttMusicTimer();
+            game.soundPlayer.PlaySound(SoundPlayer.Type.Hit);
         }
 
         static public void Heal()

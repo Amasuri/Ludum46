@@ -257,9 +257,35 @@ namespace Ludum46.Code.Level
                     {
                         if(attackRect.Intersects(enemy.GetRectList()[0]))
                         {
-                            enemy.Hit();
+                            enemy.Hit(ludum46);
                             attack.MarkAsSoonToBeUsed();
                         }
+                    }
+                }
+
+                //Attack is no longer active if it hit something
+                if (attack.SoonToBeUsed)
+                    attack.MarkAsUsed();
+            }
+
+            //Player hitboxing
+            foreach (var item in this.entities.Where(x => x is EntityAttack ))
+            {
+                var attack = (EntityAttack)item;
+
+                //Ignore if...
+                if (attack.Used)
+                    continue;
+                if (attack.targetedTo != EntityAttack.TargetedTo.Player)
+                    continue;
+
+                //Compare every attack rect to player rect
+                foreach (var attackRect in attack.GetRectList())
+                {
+                    if (attackRect.Intersects(PlayerDataManager.unscPlayerRect))
+                    {
+                        PlayerDataManager.Hit(ludum46);
+                        attack.MarkAsSoonToBeUsed();
                     }
                 }
 
