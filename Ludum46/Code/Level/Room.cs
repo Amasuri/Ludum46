@@ -72,6 +72,9 @@ namespace Ludum46.Code.Level
                 }
             }
 
+            if (entityStone.GetRectList()[0].Intersects(futurePlayerRect))
+                return true;
+
             return false;
         }
 

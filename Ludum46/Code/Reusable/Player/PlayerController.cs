@@ -125,7 +125,7 @@ namespace Ludum46.Code.Reusable
             PlayerDataManager.TryMove(move, game.level.currentRoom);
 
             //Stone movement
-            var pRect = new Rectangle((PlayerDataManager.unscaledPixelPosition).ToPoint() + PlayerDrawer.RectInsideFrame.Location, PlayerDrawer.RectInsideFrame.Size);
+            var pRect = new Rectangle((PlayerDataManager.unscaledPixelPosition + move * 2).ToPoint() + PlayerDrawer.RectInsideFrame.Location, PlayerDrawer.RectInsideFrame.Size);
 
             if (pRect.Intersects(game.level.currentRoom.entityStone.GetRectList()[0]))
                 game.level.currentRoom.entityStone.TryPush(move, game.level.currentRoom);
