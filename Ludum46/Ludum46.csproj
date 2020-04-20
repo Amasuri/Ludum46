@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Code\Graphics\AttackEffectPool.cs" />
+    <Compile Include="Code\Graphics\EndScreen.cs" />
     <Compile Include="Code\Graphics\SharedElements.cs" />
     <Compile Include="Code\Level\Entity.cs" />
     <Compile Include="Code\Level\EntityAttack.cs" />
