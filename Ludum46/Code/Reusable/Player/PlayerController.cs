@@ -41,13 +41,13 @@ namespace Ludum46.Code.Reusable
 
         //Attack rectangles
         private static Rectangle leftRectangle =>
-            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(-5, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
+            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(-5, 0), new Point(10, (int)PlayerDrawer.playerFrame.Y));
         private static Rectangle rightRectangle =>
-            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point((int)PlayerDrawer.playerFrame.X, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
+            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(-5 + (int)PlayerDrawer.playerFrame.X, 0), new Point(10, (int)PlayerDrawer.playerFrame.Y));
         private static Rectangle upRectangle =>
-            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(0, -5), new Point((int)PlayerDrawer.playerFrame.X, 5));
+            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(0, -5), new Point((int)PlayerDrawer.playerFrame.X, 10));
         private static Rectangle downRectangle =>
-            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(0, (int)PlayerDrawer.playerFrame.Y), new Point((int)PlayerDrawer.playerFrame.X, 5));
+            new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + new Point(0, -5 + (int)PlayerDrawer.playerFrame.Y), new Point((int)PlayerDrawer.playerFrame.X, 10));
 
         static public void UpdateControls(Ludum46 game)
         {
