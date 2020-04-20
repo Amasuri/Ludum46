@@ -7,26 +7,35 @@ namespace Ludum46.Code.Reusable
 {
     public class MusicPlayer
     {
-        //public enum SongType
-        //{
-        //}
+        private enum MusicMachineState
+        {
+            Tree,
+            Carry,
+            Fight,
+            HeartCarry,
+            HeartFight,
+        }
 
-        //private SongType currentSong;
-        //private Dictionary<SongType, Song> songs;
+        private Dictionary<MusicMachineState, SoundEffectInstance> dynMusic;
 
-        private SoundEffectInstance dynamic1;
-        private SoundEffectInstance dynamic2;
+        private const float MAX_VOL = 1f;
+        private const float MIN_VOL = 0f;
 
         public MusicPlayer(Ludum46 game )
         {
-            dynamic1 = game.Content.Load<SoundEffect>("res/music/dynamic/forager").CreateInstance();
-            dynamic2 = game.Content.Load<SoundEffect>("res/music/dynamic/deadbeat").CreateInstance();
+            dynMusic = new Dictionary<MusicMachineState, SoundEffectInstance>();
 
-            dynamic1.Play();
-            dynamic2.Play();
+            dynMusic.Add(MusicMachineState.Carry, game.Content.Load<SoundEffect>("res/music/dynamic/forager").CreateInstance());
+            dynMusic.Add(MusicMachineState.Fight, game.Content.Load<SoundEffect>("res/music/dynamic/deadbeat").CreateInstance());
+            dynMusic.Add(MusicMachineState.HeartFight, game.Content.Load<SoundEffect>("res/music/dynamic/battle_seeker").CreateInstance());
+            dynMusic.Add(MusicMachineState.Tree, game.Content.Load<SoundEffect>("res/music/dynamic/gluttony").CreateInstance());
+            dynMusic.Add(MusicMachineState.HeartCarry, game.Content.Load<SoundEffect>("res/music/dynamic/long_haul").CreateInstance());
 
-            dynamic1.IsLooped = true;
-            dynamic2.IsLooped = true;
+            foreach (var item in this.dynMusic)
+            {
+                item.Value.Play();
+                item.Value.IsLooped = true;
+            }
         }
 
         public void Update(Ludum46 game)
