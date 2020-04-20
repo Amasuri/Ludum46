@@ -54,9 +54,9 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/column0", Object.DrawLevel.Wall, id: 27),
                 new Object(game, "res/obj/column1", Object.DrawLevel.AbovePlayer, id: 28, isSolid: false),
                 new Object(game, "res/obj/ruined_wall", Object.DrawLevel.Wall, id: 29),
-                new Object(game, "res/obj/slope0", Object.DrawLevel.Wall, id: 30),
-                new Object(game, "res/obj/slope1", Object.DrawLevel.Wall, id: 31),
-                new Object(game, "res/obj/slope2", Object.DrawLevel.Wall, id: 32),
+                new Object(game, "res/obj/slope0", Object.DrawLevel.Wall, id: 30, isSolid: false),
+                new Object(game, "res/obj/slope1", Object.DrawLevel.Wall, id: 31, isSolid: false),
+                new Object(game, "res/obj/slope2", Object.DrawLevel.Wall, id: 32, isSolid: false),
 
                 //Water
                 new Object(game, "res/obj/water/water0", Object.DrawLevel.Wall, id: 33),
