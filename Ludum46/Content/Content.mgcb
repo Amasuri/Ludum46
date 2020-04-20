@@ -1087,7 +1087,7 @@
 /processorParam:TextureFormat=Color
 /build:../res/obj/walls/arch_top.png;res/obj/walls/arch_top.png
 
-#begin ../res/obj/walls/entrance.png
+#begin ../res/obj/walls/entrance0.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1097,7 +1097,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../res/obj/walls/entrance.png;res/obj/walls/entrance.png
+/build:../res/obj/walls/entrance0.png;res/obj/walls/entrance0.png
+
+#begin ../res/obj/walls/entrance1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../res/obj/walls/entrance1.png;res/obj/walls/entrance1.png
 
 #begin ../res/obj/walls/wall0.png
 /importer:TextureImporter

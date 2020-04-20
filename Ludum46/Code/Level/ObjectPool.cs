@@ -36,7 +36,7 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/walls/arch_left", Object.DrawLevel.Wall, id: 13),
                 new Object(game, "res/obj/walls/arch_right", Object.DrawLevel.Wall, id: 14),
                 new Object(game, "res/obj/walls/arch_top", Object.DrawLevel.AbovePlayer, id: 15),
-                new Object(game, "res/obj/walls/entrance", Object.DrawLevel.Floor, id: 16, isSolid: false, isSwitchingLevels: true),
+                new Object(game, "res/obj/walls/entrance0", Object.DrawLevel.Floor, id: 16, isSolid: false, isSwitchingLevels: true),
 
                 //Treeroom objects
                 new Object(game, "res/obj/tree_bottom", Object.DrawLevel.Wall, id: 17),
@@ -115,6 +115,9 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/low_walls/low_wall9", Object.DrawLevel.Wall, id: 76),
                 new Object(game, "res/obj/low_walls/low_wall10", Object.DrawLevel.Wall, id: 77),
                 new Object(game, "res/obj/low_walls/low_wall11", Object.DrawLevel.Wall, id: 78),
+
+                //Anotha entrance
+                new Object(game, "res/obj/walls/entrance1", Object.DrawLevel.Wall, id: 79, isSolid: false, isSwitchingLevels: true),
             };
 
             //Sanity check
