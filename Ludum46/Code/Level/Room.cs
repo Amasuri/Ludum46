@@ -46,7 +46,7 @@ namespace Ludum46.Code.Level
             if (id == 1)
             {
                 this.entities.Add(SpawnSkeletal(game, new Vector2(130, 29)));
-                this.entityStone = new EntityStone(game, "aaaa", new Vector2(219, -960));
+                this.entityStone = new EntityStone(game, "aaaa", new Vector2(218, -972));
             }
         }
 
