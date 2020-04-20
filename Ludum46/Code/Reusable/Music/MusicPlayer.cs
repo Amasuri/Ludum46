@@ -24,7 +24,7 @@ namespace Ludum46.Code.Reusable
 
         private const float MAX_VOL = 1f;
         private const float MIN_VOL = 0f;
-        private const float CHG_RATE = 0.05f;
+        private const float CHG_RATE = 0.005f;
 
         public MusicPlayer(Ludum46 game )
         {
