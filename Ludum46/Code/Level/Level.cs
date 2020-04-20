@@ -17,8 +17,10 @@ namespace Ludum46.Code.Level
         }
 
         //Some sorta current room idk and a room list
-        public Room currentRoom { private set; get; }
+        public Room currentRoom => rooms[currentRoomType];
+
         private Dictionary<RoomType, Room> rooms;
+        private RoomType currentRoomType;
 
         public Level(Ludum46 game)
         {
@@ -28,7 +30,7 @@ namespace Ludum46.Code.Level
                 { RoomType.BattleRoom, new Room(game, 2) },
             };
 
-            currentRoom = rooms[RoomType.TreeRoom];
+            currentRoomType = RoomType.TreeRoom;
         }
 
         public void Draw(SpriteBatch batch, Ludum46 game)
@@ -49,6 +51,14 @@ namespace Ludum46.Code.Level
         public void SpawnAttackEntity(Ludum46 game, List<Rectangle> rectList, EntityAttack.TargetedTo target, Vector2 unscPos, int timeToLive)
         {
             currentRoom.SpawnAttackEntity(game, rectList, target, unscPos, timeToLive);
+        }
+
+        public void SwitchRoom()
+        {
+            if (currentRoomType == RoomType.TreeRoom)
+                currentRoomType = RoomType.BattleRoom;
+            else if (currentRoomType == RoomType.BattleRoom)
+                currentRoomType = RoomType.TreeRoom;
         }
     }
 }

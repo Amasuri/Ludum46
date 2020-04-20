@@ -36,7 +36,7 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/walls/arch_left", Object.DrawLevel.Wall, id: 13),
                 new Object(game, "res/obj/walls/arch_right", Object.DrawLevel.Wall, id: 14),
                 new Object(game, "res/obj/walls/arch_top", Object.DrawLevel.AbovePlayer, id: 15),
-                new Object(game, "res/obj/walls/entrance", Object.DrawLevel.Floor, id: 16, isSolid: false),
+                new Object(game, "res/obj/walls/entrance", Object.DrawLevel.Floor, id: 16, isSolid: false, isSwitchingLevels: true),
 
                 //Treeroom objects
                 new Object(game, "res/obj/tree_bottom", Object.DrawLevel.Wall, id: 17),

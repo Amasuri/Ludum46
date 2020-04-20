@@ -246,6 +246,20 @@ namespace Ludum46.Code.Level
             {
                 this.entities.Remove(dedItem);
             }
+
+            //Level switch
+            var playerRect = new Rectangle(PlayerDataManager.unscaledPixelPosition.ToPoint() + PlayerDrawer.RectInsideFrame.Location, PlayerDrawer.RectInsideFrame.Size);
+            foreach (var position in this.objects.Keys)
+            {
+                foreach (var obj in this.objects[position])
+                {
+                    if (!obj.isSwitchingLevels)
+                        continue;
+
+                    if (obj.GetRect(position).Intersects(playerRect))
+                            ludum46.level.SwitchRoom();
+                }
+            }
         }
 
         public void SpawnAttackEntity(Ludum46 game, List<Rectangle> rectList, EntityAttack.TargetedTo target, Vector2 unscPos, int timeToLive)
