@@ -37,11 +37,11 @@ namespace Ludum46.Code.Level
 
         virtual public void Draw(SpriteBatch spriteBatch, Vector2 unsCamera)
         {
-            //Debug
-            foreach (var rect in this.rectList)
-            {
-                refGame.screenPool.drawShape.Draw(spriteBatch, Color.Black, rect.Location.ToVector2() - unsCamera, rect.Size.ToVector2(), Ludum46.Scale);
-            }
+            ////Debug
+            //foreach (var rect in this.rectList)
+            //{
+            //    refGame.screenPool.drawShape.Draw(spriteBatch, Color.Black, rect.Location.ToVector2() - unsCamera, rect.Size.ToVector2(), Ludum46.Scale);
+            //}
         }
 
         public void Update(Ludum46 game)
