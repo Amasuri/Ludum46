@@ -20,13 +20,14 @@ namespace Ludum46.Code.Level
         private string dataFile;
 
         private double auxSpawnTimer;
-        private const double AUX_MAX_SPAWN_TIMER = 7000d;
+        private const double AUX_MAX_SPAWN_TIMER_PEACE = 7000d;
+        private const double AUX_MAX_SPAWN_TIMER_HEART = 5000d;
 
         public Room(Ludum46 game, int id)
         {
             this.objects = new Dictionary<Vector2, List<Object>>();
 
-            auxSpawnTimer = AUX_MAX_SPAWN_TIMER;
+            auxSpawnTimer = AUX_MAX_SPAWN_TIMER_PEACE;
 
             //Load tile data from proper room file
             dataFile = "LevelData/room" + id.ToString() + ".ptdata";
@@ -220,7 +221,10 @@ namespace Ludum46.Code.Level
                 {
                     var ps = posToDistance.OrderBy(x => x.Value);
                     this.entities.Add(SpawnSkeletal(ludum46, ps.First().Key));
-                    auxSpawnTimer = AUX_MAX_SPAWN_TIMER;
+
+                    auxSpawnTimer = AUX_MAX_SPAWN_TIMER_PEACE;
+                    if (PlayerDataManager.HasTouchedTheStone)
+                        auxSpawnTimer = AUX_MAX_SPAWN_TIMER_HEART;
                 }
             }
 
