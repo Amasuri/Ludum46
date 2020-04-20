@@ -70,7 +70,7 @@ namespace Ludum46.Code.Reusable
             }
             else if (newRoomType == Level.Level.RoomType.TreeRoom)
             {
-                unscaledPixelPosition = new Vector2();
+                unscaledPixelPosition = new Vector2(57, - 124);
             }
         }
 
