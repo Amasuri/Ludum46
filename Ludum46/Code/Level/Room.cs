@@ -1,6 +1,7 @@
 ﻿using Ludum46.Code.Reusable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,6 +59,27 @@ namespace Ludum46.Code.Level
             }
 
             return false;
+        }
+
+        public void EditorDeleteObjectsAt(Vector2 cursorPos)
+        {
+            this.objects.Remove(cursorPos);
+
+            //Vector2 posToDelete = new Vector2(-99999, -99999);
+
+            //foreach (var position in this.objects.Keys)
+            //    foreach (var obj in this.objects[position])
+            //    {
+            //        if(obj.GetRect(PlayerDataManager.unscaledPixelPosition).Contains((Mouse.GetState().Position.ToVector2() / Ludum46.Scale).ToPoint()))
+            //        {
+            //            posToDelete = position;
+            //            goto useTwoBreaks;
+            //        }
+            //    }
+
+            //useTwoBreaks:
+            //if(posToDelete != new Vector2(-99999, -99999))
+            //    this.objects.Remove(posToDelete);
         }
 
         public bool EntityPositionCollides(Rectangle entityRectFutur)

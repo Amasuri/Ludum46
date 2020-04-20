@@ -49,8 +49,14 @@ namespace Editor
                 this.level.currentRoom.EditorAddObjectAt((this.mouse.Position.ToVector2() / Scale).ToPoint().ToVector2() + PlayerDrawer.unscaledCameraDrawOffset, this.pool.pool[currentItem] );
             }
 
+            //Deletetion
+            if (keyboard.IsKeyDown(Keys.D) && oldKeyboard.IsKeyUp(Keys.D))
+            {
+                this.level.currentRoom.EditorDeleteObjectsAt((this.mouse.Position.ToVector2() / Scale).ToPoint().ToVector2() + PlayerDrawer.unscaledCameraDrawOffset);
+            }
+
             //Saving
-            if(keyboard.IsKeyDown(Keys.LeftControl) && keyboard.IsKeyDown(Keys.S) && oldKeyboard.IsKeyUp(Keys.S))
+            if (keyboard.IsKeyDown(Keys.LeftControl) && keyboard.IsKeyDown(Keys.S) && oldKeyboard.IsKeyUp(Keys.S))
             {
                 this.level.currentRoom.EditorSaveRoomData();
             }
