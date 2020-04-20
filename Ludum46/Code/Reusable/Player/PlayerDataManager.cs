@@ -1,5 +1,6 @@
 ﻿using Ludum46.Code.Level;
 using Microsoft.Xna.Framework;
+using System;
 using static Ludum46.Code.Graphics.AttackEffectPool;
 
 namespace Ludum46.Code.Reusable
@@ -21,13 +22,13 @@ namespace Ludum46.Code.Reusable
         static public int hp { get; private set; }
         public static bool HasTouchedTheStone { get; private set; }
 
-        static private Type attackType;
+        static private Graphics.AttackEffectPool.Type attackType;
 
         static PlayerDataManager()
         {
-            unscaledPixelPosition = new Vector2(-10, 0);
+            unscaledPixelPosition = new Vector2(41, 84);
             hp = MAX_HP;
-            attackType = Type.Attack1;
+            attackType = Graphics.AttackEffectPool.Type.Attack1;
             HasTouchedTheStone = false;
         }
 
@@ -61,16 +62,28 @@ namespace Ludum46.Code.Reusable
             game.soundPlayer.PlaySound(SoundPlayer.Type.Hit);
         }
 
+        public static void SetPosition(Level.Level.RoomType newRoomType)
+        {
+            if(newRoomType == Level.Level.RoomType.BattleRoom)
+            {
+                unscaledPixelPosition = new Vector2(-5, 16);
+            }
+            else if (newRoomType == Level.Level.RoomType.TreeRoom)
+            {
+                unscaledPixelPosition = new Vector2();
+            }
+        }
+
         static public void Heal()
         {
             hp = MAX_HP;
         }
 
-        static public Type GetNextAttackType()
+        static public Graphics.AttackEffectPool.Type GetNextAttackType()
         {
             attackType++;
-            if (attackType > Type.Attack3)
-                attackType = Type.Attack1;
+            if (attackType > Graphics.AttackEffectPool.Type.Attack3)
+                attackType = Graphics.AttackEffectPool.Type.Attack1;
 
             return attackType;
         }

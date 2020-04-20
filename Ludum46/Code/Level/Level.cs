@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ludum46.Code.Reusable;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -56,9 +57,15 @@ namespace Ludum46.Code.Level
         public void SwitchRoom()
         {
             if (currentRoomType == RoomType.TreeRoom)
+            {
                 currentRoomType = RoomType.BattleRoom;
+                PlayerDataManager.SetPosition(currentRoomType);
+            }
             else if (currentRoomType == RoomType.BattleRoom)
+            {
                 currentRoomType = RoomType.TreeRoom;
+                PlayerDataManager.SetPosition(currentRoomType);
+            }
         }
     }
 }
