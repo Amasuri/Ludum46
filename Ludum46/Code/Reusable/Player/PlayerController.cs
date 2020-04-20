@@ -134,7 +134,7 @@ namespace Ludum46.Code.Reusable
 
             if (game.level.currentRoom.entityStone != null)
                 if (pRect.Intersects(game.level.currentRoom.entityStone.GetRectList()[0]))
-                    game.level.currentRoom.entityStone.TryPush(move, game.level.currentRoom);
+                    game.level.currentRoom.entityStone.TryPush(move, game.level.currentRoom, game);
         }
 
         static private bool oneKeyPress(Keys key)

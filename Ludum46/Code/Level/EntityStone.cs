@@ -24,7 +24,7 @@ namespace Ludum46.Code.Level
             this.stoneAnime.EnableDrawing();
         }
 
-        public void TryPush(Vector2 move, Room actionRoom)
+        public void TryPush(Vector2 move, Room actionRoom, Ludum46 game)
         {
             if (actionRoom.EntityPositionCollides(new Rectangle((this.unsCoord + move * 5).ToPoint(), this.GetRectList()[0].Size), checkStone: false))
             {
@@ -35,6 +35,7 @@ namespace Ludum46.Code.Level
             this.unsCoord += move;
 
             PlayerDataManager.TouchTheStone();
+            game.soundPlayer.PlaySound(SoundPlayer.Type.Drag);
 
             //Updating the rectangle
             this.rectList[0] = new Rectangle(this.unsCoord.ToPoint() + this.relativeRect.Location, this.relativeRect.Size);
