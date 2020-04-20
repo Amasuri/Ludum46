@@ -60,7 +60,7 @@ namespace Ludum46.Code.Reusable
         {
             hp--;
             MusicPlayer.ReplenishAttMusicTimer();
-            game.soundPlayer.PlaySound(SoundPlayer.Type.Hit);
+            game.soundPlayer.PlaySound(SoundPlayer.Type.HitPlayer);
         }
 
         public static void SetPosition(Level.Level.RoomType newRoomType)

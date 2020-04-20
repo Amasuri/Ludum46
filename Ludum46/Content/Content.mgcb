@@ -1560,6 +1560,12 @@
 /processorParam:TextureFormat=Color
 /build:../res/obj/waterfall2.png;res/obj/waterfall2.png
 
+#begin ../res/sound/blaerhaeurt.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/blaerhaeurt.ogg;res/sound/blaerhaeurt.ogg
+
 #begin ../res/sound/drag.ogg
 /importer:OggImporter
 /processor:SoundEffectProcessor
