@@ -43,12 +43,12 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/tree_place", Object.DrawLevel.Floor, id: 18, isSolid: false),
                 new Object(game, "res/obj/tree_top", Object.DrawLevel.AbovePlayer, id: 19, isSolid: false),
                 new Object(game, "res/obj/water_canal0", Object.DrawLevel.Floor, id: 20),
-                new Object(game, "res/obj/water_canal1", Object.DrawLevel.Floor, id: 21),
+                new Object(game, "res/obj/water_canal1", Object.DrawLevel.AbovePlayer, id: 21),
                 new Object(game, "res/obj/water_grid0", Object.DrawLevel.Floor, id: 22, isSolid: false),
                 new Object(game, "res/obj/water_grid1", Object.DrawLevel.Floor, id: 23, isSolid: false),
-                new Object(game, "res/obj/waterfall0", Object.DrawLevel.Wall, id: 24),
-                new Object(game, "res/obj/waterfall1", Object.DrawLevel.Wall, id: 25),
-                new Object(game, "res/obj/waterfall2", Object.DrawLevel.Wall, id: 26),
+                new Object(game, "res/obj/waterfall0", Object.DrawLevel.AbovePlayer, id: 24),
+                new Object(game, "res/obj/waterfall1", Object.DrawLevel.AbovePlayer, id: 25),
+                new Object(game, "res/obj/waterfall2", Object.DrawLevel.AbovePlayer, id: 26),
 
                 //Misc decorations
                 new Object(game, "res/obj/column0", Object.DrawLevel.Wall, id: 27),
@@ -107,6 +107,9 @@ namespace Ludum46.Code.Level
                 //Two more walls for quick-ness
                 new Object(game, "res/obj/walls/wall13", Object.DrawLevel.Wall, id: 73),
                 new Object(game, "res/obj/walls/wall14", Object.DrawLevel.Wall, id: 74),
+
+                //Monster spawner D
+                new Object(game, "res/obj/skeleton_spawn", Object.DrawLevel.Floor, id: 75, isSolid: false, isSpawning: true),
             };
 
             //Sanity check

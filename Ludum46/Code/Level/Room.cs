@@ -18,9 +18,14 @@ namespace Ludum46.Code.Level
 
         private string dataFile;
 
+        private double auxSpawnTimer;
+        private const double AUX_MAX_SPAWN_TIMER = 7000d;
+
         public Room(Ludum46 game, int id)
         {
             this.objects = new Dictionary<Vector2, List<Object>>();
+
+            auxSpawnTimer = AUX_MAX_SPAWN_TIMER;
 
             //Load tile data from proper room file
             dataFile = "LevelData/room" + id.ToString() + ".ptdata";
@@ -34,10 +39,14 @@ namespace Ludum46.Code.Level
             }
 
             //Debug spawn random enemies
-            this.entities = new List<Entity>
-            {
-                new EntityEnemy(game, "skeleton", new Vector2(130, 29), new Rectangle(new Point(7, 13), new Point(10, 5)), hitPoints: 3),
-            };
+            this.entities = new List<Entity>();
+
+            this.entities.Add(SpawnSkeletal(game, new Vector2(130, 29)));
+        }
+
+        private static EntityEnemy SpawnSkeletal(Ludum46 game, Vector2 pos)
+        {
+            return new EntityEnemy(game, "skeleton", pos, new Rectangle(new Point(7, 13), new Point(10, 5)), hitPoints: 3);
         }
 
         public bool PlayerPositionCollides(Vector2 pos)
@@ -176,6 +185,32 @@ namespace Ludum46.Code.Level
 
         public void Update(Ludum46 ludum46)
         {
+            //Chekk spawning conditions
+            if (auxSpawnTimer <= 0d)
+            {
+                var posToDistance = new Dictionary<Vector2, double>();
+                foreach (var position in this.objects.Keys)
+                {
+                    foreach (var obj in this.objects[position].Where(x => x.isSpawning))
+                    {
+                        posToDistance.Add(position, (PlayerDataManager.unscaledFrameCenterPoint - position).Length());
+                    }
+                }
+
+                if(posToDistance.Count > 0)
+                {
+                    posToDistance.OrderBy(x => x.Value);
+                    this.entities.Add(SpawnSkeletal(ludum46, posToDistance.First().Key));
+                    auxSpawnTimer = AUX_MAX_SPAWN_TIMER;
+                }
+            }
+
+            //Or just update the timer
+            else
+            {
+                auxSpawnTimer -= Ludum46.DeltaUpdate;
+            }
+
             //Enemies spawn entities so careful here
             var oomph = entities.Where(x => x is EntityEnemy).ToList();
             foreach (var entiity in oomph)

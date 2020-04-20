@@ -21,16 +21,18 @@ namespace Ludum46.Code.Level
         public readonly bool isSolid;
         public readonly int id;
         public readonly bool isSwitchingLevels;
+        public readonly bool isSpawning;
 
         private Ludum46 refGame;
 
-        public Object(Ludum46 game, string imgPath, DrawLevel drawLevel, bool isSolid = true, int id = 0, bool isSwitchingLevels = false)
+        public Object(Ludum46 game, string imgPath, DrawLevel drawLevel, bool isSolid = true, int id = 0, bool isSwitchingLevels = false, bool isSpawning = false)
         {
             this.refGame = game;
             this.drawLevel = drawLevel;
             this.isSolid = isSolid;
             this.id = id;
             this.isSwitchingLevels = isSwitchingLevels;
+            this.isSpawning = isSpawning;
 
             this.image = game.Content.Load<Texture2D>(imgPath);
         }
