@@ -110,6 +110,11 @@ namespace Ludum46.Code.Level
 
                 //Monster spawner D
                 new Object(game, "res/obj/skeleton_spawn", Object.DrawLevel.Floor, id: 75, isSolid: false, isSpawning: true),
+
+                //Additional low walls
+                new Object(game, "res/obj/low_walls/low_wall9", Object.DrawLevel.Wall, id: 76),
+                new Object(game, "res/obj/low_walls/low_wall10", Object.DrawLevel.Wall, id: 77),
+                new Object(game, "res/obj/low_walls/low_wall11", Object.DrawLevel.Wall, id: 78),
             };
 
             //Sanity check

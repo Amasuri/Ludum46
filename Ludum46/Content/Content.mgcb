@@ -835,6 +835,30 @@
 /processorParam:TextureFormat=Color
 /build:../res/obj/low_walls/low_wall1.png;res/obj/low_walls/low_wall1.png
 
+#begin ../res/obj/low_walls/low_wall10.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../res/obj/low_walls/low_wall10.png;res/obj/low_walls/low_wall10.png
+
+#begin ../res/obj/low_walls/low_wall11.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../res/obj/low_walls/low_wall11.png;res/obj/low_walls/low_wall11.png
+
 #begin ../res/obj/low_walls/low_wall2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -918,6 +942,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../res/obj/low_walls/low_wall8.png;res/obj/low_walls/low_wall8.png
+
+#begin ../res/obj/low_walls/low_wall9.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../res/obj/low_walls/low_wall9.png;res/obj/low_walls/low_wall9.png
 
 #begin ../res/obj/ruined_wall.png
 /importer:TextureImporter
