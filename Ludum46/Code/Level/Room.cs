@@ -342,7 +342,10 @@ namespace Ludum46.Code.Level
                     continue;
 
                 if (item.IsDead)
+                {
+                    ludum46.soundPlayer.PlaySound(SoundPlayer.Type.SkeleDeath2);
                     dedEntities.Add(item);
+                }
             }
 
             //Delete ded
