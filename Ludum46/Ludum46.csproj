@@ -125,13 +125,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
+    <None Include="LevelData\room1.ptdata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="LevelData\room2.ptdata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="LevelData\room0.ptdata">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="LevelData\room1.ptdata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

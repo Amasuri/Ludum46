@@ -12,8 +12,8 @@ namespace Ludum46.Code.Level
     {
         private enum RoomType
         {
-            TreeRoom = 1,
-            BattleRoom = 2,
+            TreeRoom = 0,
+            BattleRoom = 1,
         }
 
         //Some sorta current room idk and a room list
@@ -26,8 +26,8 @@ namespace Ludum46.Code.Level
         {
             rooms = new Dictionary<RoomType, Room>
             {
-                { RoomType.TreeRoom, new Room(game, 1) },
-                { RoomType.BattleRoom, new Room(game, 2) },
+                { RoomType.TreeRoom, new Room(game, 0) },
+                { RoomType.BattleRoom, new Room(game, 1) },
             };
 
             currentRoomType = RoomType.TreeRoom;
