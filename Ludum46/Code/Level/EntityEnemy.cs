@@ -18,7 +18,7 @@ namespace Ludum46.Code.Level
 
         private Vector2 unscaledFrameCenterPoint => unsCoord + (this.relativeRect.Size.ToVector2() / 2);
 
-        private readonly int SIGHT_RANGE = 60;
+        private readonly int SIGHT_RANGE = (int)(60 * 1.3f);
         private const float HOR_MOVE = 0.6f;
         private const float VER_MOVE = HOR_MOVE / 3 * 2;
         private const int DIFF_THRESHOLD = 2; //5

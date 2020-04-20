@@ -25,6 +25,7 @@ namespace Ludum46.Code.Reusable
         private const float MAX_VOL = 1f;
         private const float MIN_VOL = 0f;
         private const float CHG_RATE = 0.005f;
+        private const float CHG_RATE2 = CHG_RATE * 1.5f;
 
         static private double AttTrackTimer;
         private const double AttTrackTimerMax = 10000;
@@ -110,19 +111,19 @@ namespace Ludum46.Code.Reusable
             }
             else if (currentState == MusicMachineState.HeartFight)
             {
-                this.NullifyVolume(this.dynMusic[MusicMachineState.Tree]);
-                this.NullifyVolume(this.dynMusic[MusicMachineState.Carry]);
-                this.NullifyVolume(this.dynMusic[MusicMachineState.Fight]);
-                this.NullifyVolume(this.dynMusic[MusicMachineState.HeartCarry]);
-                this.MaximizeVolume(this.dynMusic[MusicMachineState.HeartFight]);
+                this.DecFaster(this.dynMusic[MusicMachineState.Tree]);
+                this.DecFaster(this.dynMusic[MusicMachineState.Carry]);
+                this.DecFaster(this.dynMusic[MusicMachineState.Fight]);
+                this.DecFaster(this.dynMusic[MusicMachineState.HeartCarry]);
+                this.IncFaster(this.dynMusic[MusicMachineState.HeartFight]);
             }
             else if (currentState == MusicMachineState.Fight)
             {
-                this.NullifyVolume(this.dynMusic[MusicMachineState.Tree]);
-                this.NullifyVolume(this.dynMusic[MusicMachineState.Carry]);
-                this.MaximizeVolume(this.dynMusic[MusicMachineState.Fight]);
-                this.NullifyVolume(this.dynMusic[MusicMachineState.HeartCarry]);
-                this.NullifyVolume(this.dynMusic[MusicMachineState.HeartFight]);
+                this.DecFaster(this.dynMusic[MusicMachineState.Tree]);
+                this.DecFaster(this.dynMusic[MusicMachineState.Carry]);
+                this.IncFaster(this.dynMusic[MusicMachineState.Fight]);
+                this.DecFaster(this.dynMusic[MusicMachineState.HeartCarry]);
+                this.DecFaster(this.dynMusic[MusicMachineState.HeartFight]);
             }
         }
 
@@ -142,14 +143,20 @@ namespace Ludum46.Code.Reusable
                 music.Volume = MAX_VOL;
         }
 
-        private void NullifyVolume(SoundEffectInstance music)
+        private void DecFaster(SoundEffectInstance music)
         {
-            music.Volume = MIN_VOL;
+            if (music.Volume - CHG_RATE2 > MIN_VOL)
+                music.Volume -= CHG_RATE2;
+            else
+                music.Volume = MIN_VOL;
         }
 
-        private void MaximizeVolume(SoundEffectInstance music)
+        private void IncFaster(SoundEffectInstance music)
         {
-            music.Volume = MAX_VOL;
+            if (music.Volume + CHG_RATE2 < MAX_VOL)
+                music.Volume += CHG_RATE2;
+            else
+                music.Volume = MAX_VOL;
         }
 
         public static void ReplenishAttMusicTimer()
