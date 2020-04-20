@@ -15,6 +15,7 @@ namespace Ludum46.Code.Level
     {
         private Dictionary<Vector2, List<Object>> objects;
         private List<Entity> entities;
+        public EntityStone entityStone { get; private set; }
 
         private string dataFile;
 
@@ -41,7 +42,11 @@ namespace Ludum46.Code.Level
             //Debug spawn random enemies
             this.entities = new List<Entity>();
 
-            this.entities.Add(SpawnSkeletal(game, new Vector2(130, 29)));
+            if (id == 1)
+            {
+                this.entities.Add(SpawnSkeletal(game, new Vector2(130, 29)));
+            }
+            this.entityStone = new EntityStone(game, "aaaa", new Vector2(0, 29));
         }
 
         private static EntityEnemy SpawnSkeletal(Ludum46 game, Vector2 pos)
@@ -161,6 +166,9 @@ namespace Ludum46.Code.Level
             {
                 entiity.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset);
             }
+
+            //Stone
+            entityStone.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset);
         }
 
         public void DrawFront(SpriteBatch batch)

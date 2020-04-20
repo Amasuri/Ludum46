@@ -104,6 +104,7 @@ namespace Ludum46.Code.Reusable
 
         private static void UpdateMovement(Ludum46 game)
         {
+            //Self movement
             var move = new Vector2(0, 0);
 
             if (keyState.IsKeyDown(keyUp))
@@ -122,6 +123,9 @@ namespace Ludum46.Code.Reusable
                 lastNonNullMove = move;
 
             PlayerDataManager.TryMove(move, game.level.currentRoom);
+
+            //Stone movement
+            game.level.currentRoom.entityStone.TryPush(move, game.level.currentRoom);
         }
 
         static private bool oneKeyPress(Keys key)
