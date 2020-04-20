@@ -60,6 +60,8 @@ namespace Ludum46.Code.Reusable
                 currentState = MusicMachineState.Tree;
             if (game.level.currentRoomType == Level.Level.RoomType.BattleRoom)
                 currentState = MusicMachineState.Carry;
+            if (game.level.currentRoomType == Level.Level.RoomType.BattleRoom && PlayerDataManager.HasTouchedTheStone)
+                currentState = MusicMachineState.HeartCarry;
 
             //Music update
             ShiftMusic();
@@ -85,6 +87,14 @@ namespace Ludum46.Code.Reusable
                 this.IncreaseVolume(this.dynMusic[MusicMachineState.Carry]);
                 this.DecreaseVolume(this.dynMusic[MusicMachineState.Fight]);
                 this.DecreaseVolume(this.dynMusic[MusicMachineState.HeartCarry]);
+                this.DecreaseVolume(this.dynMusic[MusicMachineState.HeartFight]);
+            }
+            else if (currentState == MusicMachineState.HeartCarry)
+            {
+                this.DecreaseVolume(this.dynMusic[MusicMachineState.Tree]);
+                this.DecreaseVolume(this.dynMusic[MusicMachineState.Carry]);
+                this.DecreaseVolume(this.dynMusic[MusicMachineState.Fight]);
+                this.IncreaseVolume(this.dynMusic[MusicMachineState.HeartCarry]);
                 this.DecreaseVolume(this.dynMusic[MusicMachineState.HeartFight]);
             }
         }

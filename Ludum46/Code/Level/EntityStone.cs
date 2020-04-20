@@ -34,6 +34,8 @@ namespace Ludum46.Code.Level
 
             this.unsCoord += move;
 
+            PlayerDataManager.TouchTheStone();
+
             //Updating the rectangle
             this.rectList[0] = new Rectangle(this.unsCoord.ToPoint() + this.relativeRect.Location, this.relativeRect.Size);
         }

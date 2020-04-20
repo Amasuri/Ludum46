@@ -17,6 +17,7 @@ namespace Ludum46.Code.Reusable
         static public Vector2 lastMove { get; private set; }
 
         static public int hp { get; private set; }
+        public static bool HasTouchedTheStone { get; private set; }
 
         static private Type attackType;
 
@@ -25,6 +26,7 @@ namespace Ludum46.Code.Reusable
             unscaledPixelPosition = new Vector2(-10, 0);
             hp = MAX_HP;
             attackType = Type.Attack1;
+            HasTouchedTheStone = false;
         }
 
         /// <summary>
@@ -67,6 +69,11 @@ namespace Ludum46.Code.Reusable
                 attackType = Type.Attack1;
 
             return attackType;
+        }
+
+        static public void TouchTheStone()
+        {
+            HasTouchedTheStone = true;
         }
     }
 }
