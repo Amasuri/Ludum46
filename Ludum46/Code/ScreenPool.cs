@@ -61,12 +61,14 @@ namespace Ludum46.Code
                 game.level.Draw(defaultSpriteBatch, game);
                 playerDrawer.Draw(defaultSpriteBatch);
                 game.level.DrawFront(defaultSpriteBatch, game);
+                HealthGUI.Draw(defaultSpriteBatch);
             }
             else if (screenState == ScreenState.EndGame)
             {
                 game.level.Draw(defaultSpriteBatch, game);
                 playerDrawer.Draw(defaultSpriteBatch);
                 game.level.DrawFront(defaultSpriteBatch, game);
+                HealthGUI.Draw(defaultSpriteBatch);
 
                 endScreen.Draw(game, defaultSpriteBatch);
             }

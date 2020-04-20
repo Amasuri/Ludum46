@@ -64,6 +64,7 @@ namespace Ludum46.Code
 
             AttackEffectPool.LoadAssets(this);
             SharedElements.LoadAssets(this);
+            HealthGUI.InitAsset(this);
         }
 
         protected override void UnloadContent()

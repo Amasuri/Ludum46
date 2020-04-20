@@ -546,6 +546,30 @@
 /processorParam:TextureFormat=Compressed
 /build:../res/font/font2.spritefont;res/font/font2.spritefont
 
+#begin ../res/gui/hp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../res/gui/hp.png;res/gui/hp.png
+
+#begin ../res/gui/hp_bar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../res/gui/hp_bar.png;res/gui/hp_bar.png
+
 #begin ../res/music/dynamic/battle_seeker.ogg
 /importer:OggImporter
 /processor:SoundEffectProcessor
