@@ -10,12 +10,25 @@ namespace Ludum46.Code.Level
 {
     public class Level
     {
+        private enum RoomType
+        {
+            TreeRoom = 1,
+            BattleRoom = 2,
+        }
+
         //Some sorta current room idk and a room list
         public Room currentRoom { private set; get; }
+        private Dictionary<RoomType, Room> rooms;
 
         public Level(Ludum46 game)
         {
-            currentRoom = new Room(game, 1);
+            rooms = new Dictionary<RoomType, Room>
+            {
+                { RoomType.TreeRoom, new Room(game, 1) },
+                { RoomType.BattleRoom, new Room(game, 2) },
+            };
+
+            currentRoom = rooms[RoomType.TreeRoom];
         }
 
         public void Draw(SpriteBatch batch, Ludum46 game)
