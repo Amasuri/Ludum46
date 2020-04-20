@@ -45,13 +45,13 @@ namespace Ludum46.Code.Level
 
         //Attack rects
         private Rectangle leftRectangle =>
-            new Rectangle(this.unsCoord.ToPoint() + new Point(-5, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
+            new Rectangle(this.unsCoord.ToPoint() + new Point(-5, 0), new Point(10, (int)PlayerDrawer.playerFrame.Y));
         private Rectangle rightRectangle =>
-            new Rectangle(this.unsCoord.ToPoint() + new Point((int)PlayerDrawer.playerFrame.X, 0), new Point(5, (int)PlayerDrawer.playerFrame.Y));
+            new Rectangle(this.unsCoord.ToPoint() + new Point((int)PlayerDrawer.playerFrame.X - 5, 0), new Point(10, (int)PlayerDrawer.playerFrame.Y));
         private Rectangle upRectangle =>
-            new Rectangle(this.unsCoord.ToPoint() + new Point(0, -5), new Point((int)PlayerDrawer.playerFrame.X, 5));
+            new Rectangle(this.unsCoord.ToPoint() + new Point(0, -5), new Point((int)PlayerDrawer.playerFrame.X, 10));
         private Rectangle downRectangle =>
-            new Rectangle(this.unsCoord.ToPoint() + new Point(0, (int)PlayerDrawer.playerFrame.Y), new Point((int)PlayerDrawer.playerFrame.X, 5));
+            new Rectangle(this.unsCoord.ToPoint() + new Point(0, (int)PlayerDrawer.playerFrame.Y -5), new Point((int)PlayerDrawer.playerFrame.X, 10));
 
         //Since attack animations are in shared pool (to reduce overhead)
         //entities track time variables on their own
