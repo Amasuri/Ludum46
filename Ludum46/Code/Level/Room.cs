@@ -42,11 +42,12 @@ namespace Ludum46.Code.Level
             //Debug spawn random enemies
             this.entities = new List<Entity>();
 
-            if (id == 0)
+            //Spawn le stoner
+            if (id == 1)
             {
                 this.entities.Add(SpawnSkeletal(game, new Vector2(130, 29)));
+                this.entityStone = new EntityStone(game, "aaaa", new Vector2(219, -960));
             }
-            this.entityStone = new EntityStone(game, "aaaa", new Vector2(0, 29));
         }
 
         private static EntityEnemy SpawnSkeletal(Ludum46 game, Vector2 pos)
@@ -72,8 +73,9 @@ namespace Ludum46.Code.Level
                 }
             }
 
-            if (entityStone.GetRectList()[0].Intersects(futurePlayerRect))
-                return true;
+            if(entityStone != null)
+                if (entityStone.GetRectList()[0].Intersects(futurePlayerRect))
+                    return true;
 
             return false;
         }
@@ -116,8 +118,9 @@ namespace Ludum46.Code.Level
             }
 
             if(checkStone == true)
-                if (entityStone.GetRectList()[0].Intersects(entityRectFutur))
-                    return true;
+                if (entityStone != null)
+                    if (entityStone.GetRectList()[0].Intersects(entityRectFutur))
+                        return true;
 
             return false;
         }
@@ -175,7 +178,8 @@ namespace Ludum46.Code.Level
             }
 
             //Stone
-            entityStone.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset);
+            if (entityStone != null)
+                entityStone.Draw(batch, PlayerDrawer.unscaledCameraDrawOffset);
         }
 
         public void DrawFront(SpriteBatch batch)

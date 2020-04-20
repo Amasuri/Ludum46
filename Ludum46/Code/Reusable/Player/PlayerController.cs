@@ -127,8 +127,9 @@ namespace Ludum46.Code.Reusable
             //Stone movement
             var pRect = new Rectangle((PlayerDataManager.unscaledPixelPosition + move * 2).ToPoint() + PlayerDrawer.RectInsideFrame.Location, PlayerDrawer.RectInsideFrame.Size);
 
-            if (pRect.Intersects(game.level.currentRoom.entityStone.GetRectList()[0]))
-                game.level.currentRoom.entityStone.TryPush(move, game.level.currentRoom);
+            if (game.level.currentRoom.entityStone != null)
+                if (pRect.Intersects(game.level.currentRoom.entityStone.GetRectList()[0]))
+                    game.level.currentRoom.entityStone.TryPush(move, game.level.currentRoom);
         }
 
         static private bool oneKeyPress(Keys key)
