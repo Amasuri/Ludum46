@@ -104,6 +104,16 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/decor/decor17", Object.DrawLevel.Floor, id: 71, isSolid: false),
                 new Object(game, "res/obj/decor/decor18", Object.DrawLevel.Floor, id: 72, isSolid: false),
             };
+
+            //Sanity check
+            for (int i = 0; i < pool.Count; i++)
+                for (int i2 = 0; i2 < pool.Count; i2++)
+                {
+                    if (pool[i].id == pool[i2].id && pool[i].id != i2)
+                    {
+                        throw new Exception("Mixed id: " + pool[i].id);
+                    }
+                }
         }
     }
 }
