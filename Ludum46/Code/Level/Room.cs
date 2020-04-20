@@ -46,7 +46,6 @@ namespace Ludum46.Code.Level
             //Spawn le stoner
             if (id == 1)
             {
-                this.entities.Add(SpawnSkeletal(game, new Vector2(130, 29)));
                 this.entityStone = new EntityStone(game, "aaaa", new Vector2(218, -972));
             }
         }
@@ -114,7 +113,12 @@ namespace Ludum46.Code.Level
                     //Checking whether each obj is inside screen doesn't make sense because it's essentially
                     //The same operation as checking whether the obj is inside the player, so we check for that instead
                     if (obj.GetRect(objList.Key).Intersects(entityRectFutur))
+                    {
+                        if (!checkStone && obj.isSwitchingLevels)
+                            continue;
+
                         return true;
+                    }
                 }
             }
 
@@ -205,6 +209,22 @@ namespace Ludum46.Code.Level
 
         public void Update(Ludum46 ludum46)
         {
+            //Check winning condition
+            if(entityStone != null)
+            {
+                foreach (var position in this.objects.Keys)
+                {
+                    foreach (var obj in this.objects[position].Where(x => x.isSwitchingLevels))
+                    {
+                        if (entityStone.GetRectList()[0].Intersects(obj.GetRect(position)))
+                        {
+                            PlayerDataManager.Win();
+                            return;
+                        }
+                    }
+                }
+            }
+
             //Chekk spawning conditions
             if (auxSpawnTimer <= 0d)
             {

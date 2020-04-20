@@ -87,7 +87,7 @@ namespace Ludum46.Code
             {
                 game.level.Update(game);
 
-                if (PlayerDataManager.dead)
+                if (PlayerDataManager.dead || PlayerDataManager.WinCondition)
                     screenState = ScreenState.EndGame;
             }
             else if (screenState == ScreenState.EndGame)

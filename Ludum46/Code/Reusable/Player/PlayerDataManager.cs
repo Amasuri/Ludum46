@@ -21,6 +21,7 @@ namespace Ludum46.Code.Reusable
 
         static public int hp { get; private set; }
         public static bool HasTouchedTheStone { get; private set; }
+        public static bool WinCondition { get; private set; }
 
         static private Graphics.AttackEffectPool.Type attackType;
 
@@ -91,6 +92,11 @@ namespace Ludum46.Code.Reusable
         static public void TouchTheStone()
         {
             HasTouchedTheStone = true;
+        }
+
+        public static void Win()
+        {
+            WinCondition = true;
         }
     }
 }
