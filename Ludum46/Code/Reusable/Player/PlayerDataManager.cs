@@ -55,6 +55,7 @@ namespace Ludum46.Code.Reusable
         static public void Hit()
         {
             hp--;
+            MusicPlayer.ReplenishAttMusicTimer();
         }
 
         static public void Heal()

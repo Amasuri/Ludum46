@@ -26,6 +26,9 @@ namespace Ludum46.Code.Reusable
         private const float MIN_VOL = 0f;
         private const float CHG_RATE = 0.005f;
 
+        static private double AttTrackTimer;
+        private const double AttTrackTimerMax = 10000;
+
         public MusicPlayer(Ludum46 game )
         {
             dynMusic = new Dictionary<MusicMachineState, SoundEffectInstance>();
@@ -51,17 +54,25 @@ namespace Ludum46.Code.Reusable
 
             currentState = MusicMachineState.Tree;
             goingFromState = MusicMachineState.Tree;
+            AttTrackTimer = 0f;
         }
 
         public void Update(Ludum46 game)
         {
+            if (AttTrackTimer >= 0d)
+                AttTrackTimer -= Ludum46.DeltaUpdate;
+
             //State machine switch
-            if(game.level.currentRoomType == Level.Level.RoomType.TreeRoom)
+            if (game.level.currentRoomType == Level.Level.RoomType.TreeRoom)
                 currentState = MusicMachineState.Tree;
             if (game.level.currentRoomType == Level.Level.RoomType.BattleRoom)
                 currentState = MusicMachineState.Carry;
             if (game.level.currentRoomType == Level.Level.RoomType.BattleRoom && PlayerDataManager.HasTouchedTheStone)
                 currentState = MusicMachineState.HeartCarry;
+            if (AttTrackTimer > 0d)
+                currentState = MusicMachineState.Fight;
+            if (AttTrackTimer > 0d && PlayerDataManager.HasTouchedTheStone)
+                currentState = MusicMachineState.HeartFight;
 
             //Music update
             ShiftMusic();
@@ -97,6 +108,22 @@ namespace Ludum46.Code.Reusable
                 this.IncreaseVolume(this.dynMusic[MusicMachineState.HeartCarry]);
                 this.DecreaseVolume(this.dynMusic[MusicMachineState.HeartFight]);
             }
+            else if (currentState == MusicMachineState.HeartFight)
+            {
+                this.NullifyVolume(this.dynMusic[MusicMachineState.Tree]);
+                this.NullifyVolume(this.dynMusic[MusicMachineState.Carry]);
+                this.NullifyVolume(this.dynMusic[MusicMachineState.Fight]);
+                this.NullifyVolume(this.dynMusic[MusicMachineState.HeartCarry]);
+                this.MaximizeVolume(this.dynMusic[MusicMachineState.HeartFight]);
+            }
+            else if (currentState == MusicMachineState.Fight)
+            {
+                this.NullifyVolume(this.dynMusic[MusicMachineState.Tree]);
+                this.NullifyVolume(this.dynMusic[MusicMachineState.Carry]);
+                this.MaximizeVolume(this.dynMusic[MusicMachineState.Fight]);
+                this.NullifyVolume(this.dynMusic[MusicMachineState.HeartCarry]);
+                this.NullifyVolume(this.dynMusic[MusicMachineState.HeartFight]);
+            }
         }
 
         private void DecreaseVolume(SoundEffectInstance music)
@@ -113,6 +140,21 @@ namespace Ludum46.Code.Reusable
                 music.Volume += CHG_RATE;
             else
                 music.Volume = MAX_VOL;
+        }
+
+        private void NullifyVolume(SoundEffectInstance music)
+        {
+            music.Volume = MIN_VOL;
+        }
+
+        private void MaximizeVolume(SoundEffectInstance music)
+        {
+            music.Volume = MAX_VOL;
+        }
+
+        public static void ReplenishAttMusicTimer()
+        {
+            AttTrackTimer = AttTrackTimerMax;
         }
     }
 }

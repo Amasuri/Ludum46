@@ -290,5 +290,11 @@ namespace Ludum46.Code.Level
 
             return attackType;
         }
+
+        public override void Hit()
+        {
+            MusicPlayer.ReplenishAttMusicTimer();
+            base.Hit();
+        }
     }
 }

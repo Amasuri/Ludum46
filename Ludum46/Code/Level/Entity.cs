@@ -65,7 +65,7 @@ namespace Ludum46.Code.Level
             return rectList;
         }
 
-        public void Hit()
+        virtual public void Hit()
         {
             this.hitPoints--;
         }
