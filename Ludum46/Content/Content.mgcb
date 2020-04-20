@@ -469,6 +469,18 @@
 /processorParam:TextureFormat=Color
 /build:../res/entity/skeleton/Right.png;res/entity/skeleton/Right.png
 
+#begin ../res/entity/skeleton/Spawn.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../res/entity/skeleton/Spawn.png;res/entity/skeleton/Spawn.png
+
 #begin ../res/entity/skeleton/Up.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -888,6 +900,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../res/obj/ruined_wall.png;res/obj/ruined_wall.png
+
+#begin ../res/obj/skeleton_spawn.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../res/obj/skeleton_spawn.png;res/obj/skeleton_spawn.png
 
 #begin ../res/obj/slope0.png
 /importer:TextureImporter
