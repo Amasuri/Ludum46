@@ -42,9 +42,13 @@ namespace Ludum46.Code.Level
                 new Object(game, "res/obj/tree_bottom", Object.DrawLevel.Wall, id: 17),
                 new Object(game, "res/obj/tree_place", Object.DrawLevel.Floor, id: 18, isSolid: false),
                 new Object(game, "res/obj/tree_top", Object.DrawLevel.AbovePlayer, id: 19, isSolid: false),
-                new Object(game, "res/obj/water_canal", Object.DrawLevel.Floor, id: 20),
-                new Object(game, "res/obj/water_grid", Object.DrawLevel.Floor, id: 21, isSolid: false),
-                new Object(game, "res/obj/waterfall", Object.DrawLevel.Wall, id: 22),
+                new Object(game, "res/obj/water_canal0", Object.DrawLevel.Floor, id: 20),
+                new Object(game, "res/obj/water_canal1", Object.DrawLevel.Floor, id: 21),
+                new Object(game, "res/obj/water_grid0", Object.DrawLevel.Floor, id: 22, isSolid: false),
+                new Object(game, "res/obj/water_grid1", Object.DrawLevel.Floor, id: 23, isSolid: false),
+                new Object(game, "res/obj/waterfall0", Object.DrawLevel.Wall, id: 24),
+                new Object(game, "res/obj/waterfall1", Object.DrawLevel.Wall, id: 25),
+                new Object(game, "res/obj/waterfall2", Object.DrawLevel.Wall, id: 26),
             };
         }
     }
