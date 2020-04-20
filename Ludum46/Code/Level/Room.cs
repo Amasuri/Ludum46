@@ -199,8 +199,8 @@ namespace Ludum46.Code.Level
 
                 if(posToDistance.Count > 0)
                 {
-                    posToDistance.OrderBy(x => x.Value);
-                    this.entities.Add(SpawnSkeletal(ludum46, posToDistance.First().Key));
+                    var ps = posToDistance.OrderBy(x => x.Value);
+                    this.entities.Add(SpawnSkeletal(ludum46, ps.First().Key));
                     auxSpawnTimer = AUX_MAX_SPAWN_TIMER;
                 }
             }
