@@ -25,24 +25,26 @@ namespace Ludum46.Code.Graphics
 
         public override void Draw(Ludum46 game, SpriteBatch spriteBatch)
         {
-            pixel.Draw(spriteBatch, new Color(0, 0, 0, pixAlpha), Vector2.Zero, new Vector2(Ludum46.ScaledWidth, Ludum46.ScaledHeight));
-
             //Bad end
             if (PlayerDataManager.dead)
             {
+                pixel.Draw(spriteBatch, new Color(5, 5, 5, pixAlpha), Vector2.Zero, new Vector2(Ludum46.ScaledWidth, Ludum46.ScaledHeight));
+
                 var size = ScreenPool.fontBig.MeasureString(EndBadText);
                 var pos = (new Vector2(Ludum46.ScaledWidth, Ludum46.ScaledHeight) - size) / 2;
 
-                spriteBatch.DrawString(ScreenPool.fontBig, EndBadText, pos, new Color(200, 200, 200, pixAlpha));
+                spriteBatch.DrawString(ScreenPool.fontBig, EndBadText, pos, new Color(200, 2, 50, pixAlpha));
             }
 
             //Good end
             else
             {
-                var size = ScreenPool.fontBig.MeasureString(EndGoodText);
-                var pos = (new Vector2(Ludum46.ScaledWidth, Ludum46.ScaledHeight) - size) / 2;
+                pixel.Draw(spriteBatch, new Color(20, 16, 19, pixAlpha), Vector2.Zero, new Vector2(Ludum46.ScaledWidth, Ludum46.ScaledHeight));
 
-                spriteBatch.DrawString(ScreenPool.fontBig, EndGoodText, pos, new Color(200, 200, 200, pixAlpha));
+                //var size = ScreenPool.fontBig.MeasureString(EndGoodText);
+                //var pos = (new Vector2(Ludum46.ScaledWidth, Ludum46.ScaledHeight) - size) / 2;
+
+                //spriteBatch.DrawString(ScreenPool.fontBig, EndGoodText, pos, new Color(200, 200, 200, pixAlpha));
             }
         }
 
