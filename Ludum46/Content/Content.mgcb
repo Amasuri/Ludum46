@@ -1507,3 +1507,51 @@
 /processorParam:TextureFormat=Color
 /build:../res/obj/waterfall2.png;res/obj/waterfall2.png
 
+#begin ../res/sound/drag.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/drag.ogg;res/sound/drag.ogg
+
+#begin ../res/sound/heart.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/heart.ogg;res/sound/heart.ogg
+
+#begin ../res/sound/hit.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/hit.ogg;res/sound/hit.ogg
+
+#begin ../res/sound/newskele.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/newskele.ogg;res/sound/newskele.ogg
+
+#begin ../res/sound/skeledeath2.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/skeledeath2.ogg;res/sound/skeledeath2.ogg
+
+#begin ../res/sound/swing1.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/swing1.ogg;res/sound/swing1.ogg
+
+#begin ../res/sound/swing3.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/swing3.ogg;res/sound/swing3.ogg
+
+#begin ../res/sound/vodopad.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../res/sound/vodopad.ogg;res/sound/vodopad.ogg
+

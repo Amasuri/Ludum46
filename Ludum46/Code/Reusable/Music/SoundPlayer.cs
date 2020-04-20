@@ -8,12 +8,24 @@ namespace Ludum46.Code.Reusable
     {
         public enum Type
         {
+            Drag,
+            Heart,
+            Hit,
+            NewSkele,
+            SkeleDeath2,
+            swing1,
+            swing3,
+            waterfall,
         }
 
         private Dictionary<Type, SoundEffect> sounds;
 
-        public SoundPlayer(Game game)
+        public SoundPlayer(Ludum46 game)
         {
+            sounds = new Dictionary<Type, SoundEffect>
+            {
+                { Type.Hit, game.Content.Load<SoundEffect>("res/sound/hit") }
+            };
         }
 
         public void PlaySound(Type type)

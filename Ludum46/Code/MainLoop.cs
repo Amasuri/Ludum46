@@ -27,6 +27,7 @@ namespace Ludum46.Code
         public Level.Level level;
 
         public MusicPlayer music;
+        public SoundPlayer soundPlayer;
 
         public Ludum46()
         {
@@ -59,6 +60,8 @@ namespace Ludum46.Code
             screenPool = new ScreenPool(this);
 
             music = new MusicPlayer(this);
+            soundPlayer = new SoundPlayer(this);
+
             AttackEffectPool.LoadAssets(this);
             SharedElements.LoadAssets(this);
         }
