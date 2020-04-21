@@ -18,7 +18,6 @@ namespace Ludum46.Code.Graphics
         private bool triggeredReverse = false;
 
         private const string EndBadText = "You have fallen in battle,\n and therefore, your tree has died.";
-        private const string EndGoodText = "You have saved your dear friend. \n Your life together may continue for more.";
 
         public EndScreen(Ludum46 game)
         {
@@ -56,7 +55,7 @@ namespace Ludum46.Code.Graphics
 
         public override void Update(Ludum46 game, MouseState mouse, MouseState oldMouse, KeyboardState keys, KeyboardState oldKeys)
         {
-            if (!triggeredReverse)
+            if (!triggeredReverse && !PlayerDataManager.dead)
             {
                 pixAlpha++;
                 if (pixAlpha > 255)

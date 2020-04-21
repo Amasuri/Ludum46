@@ -45,7 +45,7 @@ namespace Ludum46.Code
 
         protected override void Initialize()
         {
-            this.Window.Title = "Ludum46";
+            this.Window.Title = "Spirit of the Forest";
 
             base.Initialize();
         }

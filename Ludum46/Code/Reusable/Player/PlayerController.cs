@@ -124,7 +124,7 @@ namespace Ludum46.Code.Reusable
             if (move.X != 0 && move.Y != 0)
             {
                 move.Normalize();
-                move = move / 5 * 4;
+                move = move / 6 * 5;
             }
 
             if (move.X != 0 || move.Y != 0)
@@ -133,7 +133,7 @@ namespace Ludum46.Code.Reusable
             if(PlayerDataManager.hasMovedStoneRecently)
             {
                 PlayerDataManager.hasMovedStoneRecently = false;
-                move = move / 2;
+                move = move / 4 * 3;
             }
 
             PlayerDataManager.TryMove(move, game.level.currentRoom);

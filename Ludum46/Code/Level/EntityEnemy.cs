@@ -23,7 +23,7 @@ namespace Ludum46.Code.Level
         private const float VER_MOVE = HOR_MOVE / 3 * 2;
         private const int DIFF_THRESHOLD = 2; //5
         private const int ATT_COOLDOWN = 200;
-        private const int ATT_DELAY = 500;
+        private const int ATT_DELAY = 700;
         private const int ATT_RANGE = 13; //10
 
         private double blockAfterAttackForMs = 0;
