@@ -12,6 +12,7 @@ namespace Ludum46.Code.Graphics
 {
     public class EndScreen : ADrawingClass
     {
+        private Animation animation;
         private Pixel pixel;
         private int pixAlpha = 0;
 
@@ -21,6 +22,7 @@ namespace Ludum46.Code.Graphics
         public EndScreen(Ludum46 game)
         {
             pixel = new Pixel(game.GraphicsDevice);
+            animation = new Animation(game, "res/gui/end", Ludum46.UnscaledWidth, Ludum46.Scale, 80);
         }
 
         public override void Draw(Ludum46 game, SpriteBatch spriteBatch)
