@@ -25,8 +25,8 @@ namespace Ludum46.Code.Reusable
         private static KeyboardState keyState;
         private static KeyboardState oldKeyState;
 
-        private const float horzVelocity = 1f;
-        private const float vertVelocity = horzVelocity / 3 * 2;
+        private const float horzVelocity = 0.9f;
+        private const float vertVelocity = horzVelocity;
         private const int attackDelayMs = 200;
         private static double blockAttackForMs = 0;
 
@@ -122,10 +122,19 @@ namespace Ludum46.Code.Reusable
                 move = new Vector2(+horzVelocity, move.Y);
 
             if (move.X != 0 && move.Y != 0)
+            {
                 move.Normalize();
+                move = move / 5 * 4;
+            }
 
             if (move.X != 0 || move.Y != 0)
                 lastNonNullMove = move;
+
+            if(PlayerDataManager.hasMovedStoneRecently)
+            {
+                PlayerDataManager.hasMovedStoneRecently = false;
+                move = move / 2;
+            }
 
             PlayerDataManager.TryMove(move, game.level.currentRoom);
 
@@ -134,7 +143,10 @@ namespace Ludum46.Code.Reusable
 
             if (game.level.currentRoom.entityStone != null)
                 if (pRect.Intersects(game.level.currentRoom.entityStone.GetRectList()[0]))
+                {
                     game.level.currentRoom.entityStone.TryPush(move, game.level.currentRoom, game);
+                    PlayerDataManager.hasMovedStoneRecently = true;
+                }
         }
 
         static private bool oneKeyPress(Keys key)

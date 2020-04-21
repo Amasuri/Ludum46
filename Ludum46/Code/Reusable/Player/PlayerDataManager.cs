@@ -24,6 +24,7 @@ namespace Ludum46.Code.Reusable
         public static bool WinCondition { get; private set; }
 
         static private Graphics.AttackEffectPool.Type attackType;
+        internal static bool hasMovedStoneRecently;
 
         static PlayerDataManager()
         {
